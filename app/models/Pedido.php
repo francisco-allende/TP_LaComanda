@@ -76,5 +76,34 @@ class Pedido{
     public function setTotalCuenta($total_cuenta){
         $this->total_cuenta = $total_cuenta;
     }
+
+    //--- Database Methods ---///
+
+    public function CrearPedido()
+    {
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+
+        $consulta = $objAccesoDatos->prepararConsulta("
+        INSERT INTO pedidos (id_mesa, status, nombre_cliente, foto, total_cuenta) 
+        VALUES (:id_mesa, :status, :nombre_cliente, :foto, :total_cuenta)");
+        
+        $consulta->bindValue(':id_mesa', $this->id_mesa, PDO::PARAM_INT);
+        $consulta->bindValue(':status', $this->status, PDO::PARAM_STR);
+        $consulta->bindValue(':nombre_cliente', $this->nombre_cliente, PDO::PARAM_STR);
+        $consulta->bindValue(':foto', $this->foto, PDO::PARAM_STR);
+        $consulta->bindValue(':total_cuenta', $this->total_cuenta, PDO::PARAM_INT);
+        $consulta->execute();
+
+        return $objAccesoDatos->obtenerUltimoId();
+    }
+
+    public static function ObtenerTodos()
+    {
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM pedidos");
+        $consulta->execute();
+
+        return $consulta->fetchAll(PDO::FETCH_CLASS, 'Pedido');
+    }
 }
 ?>

@@ -1,0 +1,524 @@
+{
+	"info": {
+		"_postman_id": "16c5d7a8-ce8c-45f4-9046-a112d32d0da1",
+		"name": "TP_la_comanda",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23311663"
+	},
+	"item": [
+		{
+			"name": "usuarios/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjgxMzg1NjgsImV4cCI6MjE5MzczODU2OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsidXN1YXJpbyI6ImZyYW5pdG9vbyIsInBlcmZpbCI6ImFkbWluIiwiYWxpYXMiOiJmcmFuIn0sImFwcCI6IlRlc3QgSldUIE15QXBpIn0.mD0EuOpsDzYR2Znecwpjy6jcwQdLB9FyDuTeLVbKLxQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/usuarios/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"usuarios",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "usuarios/alta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "juancito",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "isAdmin",
+							"value": "no",
+							"type": "text"
+						},
+						{
+							"key": "user_type",
+							"value": "cocinero",
+							"type": "text"
+						},
+						{
+							"key": "fecha_inicio",
+							"value": "2021-07-1",
+							"type": "text"
+						},
+						{
+							"key": "fecha_fin",
+							"value": "2021-07-2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/usuarios/alta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"usuarios",
+						"alta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "usuarios/search_by_id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjgxMzg1NjgsImV4cCI6MjE5MzczODU2OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsidXN1YXJpbyI6ImZyYW5pdG9vbyIsInBlcmZpbCI6ImFkbWluIiwiYWxpYXMiOiJmcmFuIn0sImFwcCI6IlRlc3QgSldUIE15QXBpIn0.mD0EuOpsDzYR2Znecwpjy6jcwQdLB9FyDuTeLVbKLxQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/usuarios/search_by_id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"usuarios",
+						"search_by_id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "usuarios/modificar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjgxMzg1NjgsImV4cCI6MjE5MzczODU2OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsidXN1YXJpbyI6ImZyYW5pdG9vbyIsInBlcmZpbCI6ImFkbWluIiwiYWxpYXMiOiJmcmFuIn0sImFwcCI6IlRlc3QgSldUIE15QXBpIn0.mD0EuOpsDzYR2Znecwpjy6jcwQdLB9FyDuTeLVbKLxQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "majin boo",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "bubu123",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/usuarios/modificar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"usuarios",
+						"modificar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "usuarios/borrar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjgxMzg1NjgsImV4cCI6MjE5MzczODU2OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsidXN1YXJpbyI6ImZyYW5pdG9vbyIsInBlcmZpbCI6ImFkbWluIiwiYWxpYXMiOiJmcmFuIn0sImFwcCI6IlRlc3QgSldUIE15QXBpIn0.mD0EuOpsDzYR2Znecwpjy6jcwQdLB9FyDuTeLVbKLxQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "esAdmin",
+							"value": "si",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/usuarios/borrar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"usuarios",
+						"borrar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mesas/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjgxMzg1NjgsImV4cCI6MjE5MzczODU2OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsidXN1YXJpbyI6ImZyYW5pdG9vbyIsInBlcmZpbCI6ImFkbWluIiwiYWxpYXMiOiJmcmFuIn0sImFwcCI6IlRlc3QgSldUIE15QXBpIn0.mD0EuOpsDzYR2Znecwpjy6jcwQdLB9FyDuTeLVbKLxQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/mesas/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"mesas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mesas/alta",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjgxMzg1NjgsImV4cCI6MjE5MzczODU2OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsidXN1YXJpbyI6ImZyYW5pdG9vbyIsInBlcmZpbCI6ImFkbWluIiwiYWxpYXMiOiJmcmFuIn0sImFwcCI6IlRlc3QgSldUIE15QXBpIn0.mD0EuOpsDzYR2Znecwpjy6jcwQdLB9FyDuTeLVbKLxQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id_mozo",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "estado",
+							"value": "ocupada",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/mesas/alta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"mesas",
+						"alta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "productos/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjgxMzg1NjgsImV4cCI6MjE5MzczODU2OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsidXN1YXJpbyI6ImZyYW5pdG9vbyIsInBlcmZpbCI6ImFkbWluIiwiYWxpYXMiOiJmcmFuIn0sImFwcCI6IlRlc3QgSldUIE15QXBpIn0.mD0EuOpsDzYR2Znecwpjy6jcwQdLB9FyDuTeLVbKLxQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/productos/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"productos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "productos/alta",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjgxMzg1NjgsImV4cCI6MjE5MzczODU2OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsidXN1YXJpbyI6ImZyYW5pdG9vbyIsInBlcmZpbCI6ImFkbWluIiwiYWxpYXMiOiJmcmFuIn0sImFwcCI6IlRlc3QgSldUIE15QXBpIn0.mD0EuOpsDzYR2Znecwpjy6jcwQdLB9FyDuTeLVbKLxQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "area",
+							"value": "cocina",
+							"type": "text"
+						},
+						{
+							"key": "id_pedido",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "en preparacion",
+							"type": "text"
+						},
+						{
+							"key": "descripcion",
+							"value": "6 emapanadasde  jyq",
+							"type": "text"
+						},
+						{
+							"key": "precio",
+							"value": "699",
+							"type": "text"
+						},
+						{
+							"key": "tiempo_inicio",
+							"value": "2022-07-01",
+							"type": "text"
+						},
+						{
+							"key": "tiempo_fin",
+							"value": "2022-07-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/productos/alta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"productos",
+						"alta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pedidos/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjgxMzg1NjgsImV4cCI6MjE5MzczODU2OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsidXN1YXJpbyI6ImZyYW5pdG9vbyIsInBlcmZpbCI6ImFkbWluIiwiYWxpYXMiOiJmcmFuIn0sImFwcCI6IlRlc3QgSldUIE15QXBpIn0.mD0EuOpsDzYR2Znecwpjy6jcwQdLB9FyDuTeLVbKLxQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/pedidos/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"pedidos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost/tp_laComanda/la_comanda/app/pedidos/alta",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjgxMzg1NjgsImV4cCI6MjE5MzczODU2OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsidXN1YXJpbyI6ImZyYW5pdG9vbyIsInBlcmZpbCI6ImFkbWluIiwiYWxpYXMiOiJmcmFuIn0sImFwcCI6IlRlc3QgSldUIE15QXBpIn0.mD0EuOpsDzYR2Znecwpjy6jcwQdLB9FyDuTeLVbKLxQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id_mesa",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "en preparacion",
+							"type": "text"
+						},
+						{
+							"key": " nombre_cliente",
+							"value": "pepe hambriento",
+							"type": "text"
+						},
+						{
+							"key": "foto",
+							"value": "path/blabla/food.jpg",
+							"type": "text"
+						},
+						{
+							"key": "total_cuenta",
+							"value": "699",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/pedidos/alta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"pedidos",
+						"alta"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

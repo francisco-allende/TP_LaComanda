@@ -44,5 +44,30 @@ class Mesa {
     public function setEstado($estado){
         $this->estado = $estado;
     }        
+
+    //--- Database Methods ---///
+
+    public function CrearMesa()
+    {
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+
+        $consulta = $objAccesoDatos->prepararConsulta("
+        INSERT INTO mesas (id_mozo, estado) VALUES (:id_mozo, :estado)");
+        
+        $consulta->bindValue(':id_mozo', $this->id_mozo, PDO::PARAM_INT);
+        $consulta->bindValue(':estado', $this->estado, PDO::PARAM_STR);
+        $consulta->execute();
+
+        return $objAccesoDatos->obtenerUltimoId();
+    }
+
+    public static function ObtenerTodos()
+    {
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDatos->prepararConsulta("SELECT id, id_mozo, estado FROM mesas");
+        $consulta->execute();
+
+        return $consulta->fetchAll(PDO::FETCH_CLASS, 'Mesa');
+    }
 }
 ?>
