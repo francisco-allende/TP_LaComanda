@@ -79,4 +79,38 @@ class UsuarioController extends Usuario implements IApiUsable
       return $response
         ->withHeader('Content-Type', 'application/json');
     }
+
+    public function Verificar($request, $response, $args)
+    {
+        $params = $request->getParsedBody();
+        $payload = "";
+        $username = $params['username'];
+        $password = $params['password'];
+
+        $usuario = Usuario::ObtenerUsuarioPorMail($username);
+
+        if(!is_null($usuario) && $usuario != false)
+        {
+          if(password_verify(trim($password), $usuario->getPassword()))
+          {
+              $userData = array(
+                  'id' => $usuario->getId(),
+                  'username' => $usuario->getMail(),
+                  'password' => $usuario->getClave(),
+                  'isAdmin' => $usuario->getIsAdmin(),
+                  'user_type' => $usuario->getUserType(),
+                  'fecha_inicio' => $usuario->getFechaInicio(), 
+                  'fecha_final' => $usuario->getFechaFinal());
+              $payload = json_encode(array('Token' => AutentificadorJWT::CrearToken($userData), 'response' => 'OK', 'Tipo_Usuario' => $usuario->getTipo()));
+          }else{
+            $payload = json_encode(array('Login' => "Clave incorrecta"));
+          }
+        }else{
+          $payload = json_encode(array('Login' => "No existe usuario $username"));
+        }
+
+        $response->getBody()->write($payload);
+        return $response
+          ->withHeader('Content-Type', 'application/json');
+    }
 }

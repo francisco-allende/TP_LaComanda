@@ -46,6 +46,7 @@ $app->group('/usuarios', function (RouteCollectorProxy $group) {
     $group->post('/alta', \UsuarioController::class . ':CargarUno');
     $group->put('/modificar', \UsuarioController::class . ':ModificarUno');
     $group->delete('/borrar', \UsuarioController::class . ':BorrarUno')->add(new isAdmin());
+    $group->post('/login', \UsuarioController::class . ':Verificar');
   })->add(new CheckJWT());
 
 //MESAS

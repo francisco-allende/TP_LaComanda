@@ -162,5 +162,20 @@ class Usuario{
             return false;
         }
     }
+
+    public static function ObtenerUsuarioPorMail($username)
+    {
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM usuarios WHERE username = :username");
+        $consulta->bindValue(':username', $username);
+        $consulta->execute();
+
+        $myObj = $consulta->fetchObject('Usuario');
+        if (is_null($myObj)) {
+            return null;
+        }
+
+        return $myObj;
+    }
 }
 ?>
