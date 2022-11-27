@@ -171,7 +171,7 @@ require_once './db/AccesoDatos.php';
             return false;
         }
     }
-    //esto deberia hacerse desde pedido ?
+    
     public static function ModificarFinalizacionProducto($id)
     {
         $objAccesoDato = AccesoDatos::obtenerInstancia();
