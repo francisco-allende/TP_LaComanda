@@ -204,6 +204,12 @@ require_once './db/AccesoDatos.php';
             $tiempo_para_finalizar = Producto::AsignarTiempoRestante($tiempo_fin);
             $consulta->bindValue(':tiempo_para_finalizar', $tiempo_fin.=' minutes');
             $consulta->bindValue(':tiempo_fin', $tiempo_para_finalizar->format('H:i:s'));
+        }else if($status == "listo")
+        {
+            $consulta = $objAccesoDato->prepararConsulta(
+                "UPDATE productos SET status = :status, 
+                tiempo_para_finalizar = '0 minutes'
+                WHERE id = :id");
         }else{
             $consulta = $objAccesoDato->prepararConsulta("UPDATE productos SET status = :status WHERE id = :id");
         }

@@ -82,4 +82,36 @@ class PedidoController extends Pedido
         return $response
           ->withHeader('Content-Type', 'application/json');
     }
+
+    
+    public function CuantoFaltaPorPedido($request, $response, $args)
+    {
+        $id_pedido = $args['id_pedido'];
+
+        $pedido = Pedido::ObtenerPedido($id_pedido);
+
+        if($pedido != false && $pedido->id == $id_pedido)
+        {
+          $productos = Pedido::ObtenerProductosDelPedido($id_pedido);
+          if(count($productos) > 0)
+          {
+            $demora = "";
+            for($i = 0; $i < count($productos); $i++){
+              $demora .= "Falta ";
+              $demora .= $productos[$i]->calcularTiempoRestante($productos[$i]->getTiempoFin()); 
+              $demora .= " para el ".$productos[$i]->getDescripcion().PHP_EOL;
+            }
+            $payload = $demora;
+
+          }else{
+            $payload = json_encode(array("Error" => "No hay productos asignados al pedido con ese id"));
+          }
+        }else{
+          $payload = json_encode(array("Error" => "No existe pedido con ese id"));
+        }
+
+        $response->getBody()->write($payload);
+        return $response
+          ->withHeader('Content-Type', 'application/json');
+    }
 }

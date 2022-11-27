@@ -67,6 +67,7 @@ $app->group('/trabajador', function (RouteCollectorProxy $group) {
     $group->get('[/]', \PedidoController::class . ':TraerTodos'); 
     $group->get('/search_by_id/{id}', \PedidoController::class . ':TraerUno'); 
     $group->get('/cuanto_falta/{id_mesa}/{id_pedido}', \PedidoController::class . ':CuantoFalta');
+    $group->get('/cuanto_falta_por_pedido/{id_pedido}', \PedidoController::class . ':CuantoFaltaPorPedido')->add(new isAdmin());
     $group->post('/alta', \PedidoController::class . ':CargarUno');
     $group->put('/modificar', \PedidoController::class . ':ModificarUno');
     $group->delete('/borrar', \PedidoController::class . ':BorrarUno');
