@@ -47,7 +47,7 @@ $app->group('/trabajador', function (RouteCollectorProxy $group) {
 //TRABAJADORES
 $app->group('/trabajador', function (RouteCollectorProxy $group) {
     $group->get('[/]', \TrabajadorController::class . ':TraerTodos'); 
-    $group->post('/search_by_id', \TrabajadorController::class . ':TraerUno'); 
+    $group->get('/search_by_id/{id}', \TrabajadorController::class . ':TraerUno'); 
     $group->put('/modificar', \TrabajadorController::class . ':ModificarUno');
     $group->delete('/borrar', \TrabajadorController::class . ':BorrarUno')->add(new isAdmin());
   })->add(new EstaLogeado());
@@ -55,7 +55,7 @@ $app->group('/trabajador', function (RouteCollectorProxy $group) {
 //MESAS
 $app->group('/mesas', function (RouteCollectorProxy $group) {
     $group->get('[/]', \MesaController::class . ':TraerTodos'); 
-    $group->post('/search_by_id', \MesaController::class . ':TraerUno'); 
+    $group->get('/search_by_id/{id}', \MesaController::class . ':TraerUno'); 
     $group->post('/alta', \MesaController::class . ':CargarUno');
     $group->put('/modificar', \MesaController::class . ':ModificarUno');
     $group->delete('/borrar', \MesaController::class . ':BorrarUno')->add(new isAdmin());
@@ -64,16 +64,16 @@ $app->group('/mesas', function (RouteCollectorProxy $group) {
   //PRODUCTOS
   $app->group('/productos', function (RouteCollectorProxy $group) {
     $group->get('[/]', \ProductoController::class . ':TraerTodos'); 
-    $group->post('/search_by_id', \ProductoController::class . ':TraerUno'); 
+    $group->get('/search_by_id/{id}', \ProductoController::class . ':TraerUno'); 
     $group->post('/alta', \ProductoController::class . ':CargarUno');
-    $group->put('/modificar', \ProductoController::class . ':ModificarUno');
+    $group->put('/modificar_status', \ProductoController::class . ':ModificarStatus');
     $group->delete('/borrar', \ProductoController::class . ':BorrarUno')->add(new isAdmin());
   })->add(new EstaLogeado());
 
   //PEDIDOS
   $app->group('/pedidos', function (RouteCollectorProxy $group) {
     $group->get('[/]', \PedidoController::class . ':TraerTodos'); 
-    $group->post('/search_by_id', \PedidoController::class . ':TraerUno'); 
+    $group->get('/search_by_id/{id}', \PedidoController::class . ':TraerUno'); 
     $group->post('/alta', \PedidoController::class . ':CargarUno');
     $group->put('/modificar', \PedidoController::class . ':ModificarUno');
     $group->delete('/borrar', \PedidoController::class . ':BorrarUno')->add(new isAdmin());

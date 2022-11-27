@@ -8,21 +8,26 @@ class isAdmin
 {
     public function __invoke(Request $request, RequestHandler $handler): Response
     {
-        $reponse = new Response();
         $parametros = $request->getParsedBody();
 
-        if(isset($parametros["esAdmin"]))
-        {
-            if($parametros["esAdmin"] == "si")
-            { 
-                $reponse = $handler->handle($request);
+        $header = $request->getHeaderLine('Authorization');
+        $response = new Response();
+        try {
+            if (!empty($header)) {
+                $token = trim(explode("Bearer", $header)[1]);
+                $data = AutentificadorJWT::ObtenerData($token);
+                if ($data->isAdmin == "si"){
+                    $response = $handler->handle($request);
+                }else{
+                    $response->getBody()->write("Error, no tiene el permiso de administrador");
+                }
             }else{
-                $reponse->getBody()->write("Error, no tiene el permiso de administrador");
+                $response->getBody()->write("Error, Token vacio");
             }
-        }else{
-            $reponse->getBody()->write("Faltan completar los campos");
+        }catch (\Throwable $th) {
+            echo $th->getMessage();
         }
 
-        return $reponse;
+        return $response->withHeader('Content-Type', 'application/json');
     }
 }

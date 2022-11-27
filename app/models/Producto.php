@@ -146,5 +146,61 @@ require_once './db/AccesoDatos.php';
 
         return $consulta->fetchAll(PDO::FETCH_CLASS, 'Producto');
     }
+
+    public static function ObtenerProducto($id)
+    {
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM productos WHERE id = :id");
+        $consulta->bindValue(':id', $id);
+        $consulta->execute();
+
+        return $consulta->fetchObject('Producto');
+    }
+
+    public static function ModificarStatusProducto($status, $id)
+    {
+        $objAccesoDato = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDato->prepararConsulta("UPDATE productos SET status = :status WHERE id = :id");
+        $consulta->bindValue(':status', $status, PDO::PARAM_STR);
+        $consulta->bindValue(':id', $id, PDO::PARAM_INT);
+        $consulta->execute();
+
+        if($consulta->rowCount() == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    //esto deberia hacerse desde pedido ?
+    public static function ModificarFinalizacionProducto($id)
+    {
+        $objAccesoDato = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDato->prepararConsulta("UPDATE productos SET status = :status, tiempo_fin = :tiempo_fin, tiempo_para_finalizar = :tiempo_para_finalizar WHERE id = :id;");
+        $fecha = new DateTime(date("d-m-Y"));
+        $consulta->bindValue(':id', $id, PDO::PARAM_INT);
+        $consulta->bindValue(':tiempo_fin', date_format($fecha, 'Y-m-d H:i:s'));
+        $consulta->bindValue(':tiempo_para_finalizar', date_format('0:0:0'));
+        $consulta->execute();
+
+        if($consulta->rowCount() == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static function BorrarProducto($id)
+    {
+        $objAccesoDato = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDato->prepararConsulta("DELETE FROM productos WHERE id = :id;"); 
+        $consulta->bindValue(':id', $id, PDO::PARAM_INT);
+        $consulta->execute();
+
+        if($consulta->rowCount() == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
 ?>

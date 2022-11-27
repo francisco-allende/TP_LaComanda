@@ -6,10 +6,9 @@ class TrabajadorController extends Trabajador implements IApiUsable
 {
     public function TraerUno($request, $response, $args)
     {
-        // Buscamos trabajador por id
         $params = $request->getParsedBody();
 
-        $trabajador = Trabajador::ObtenerTrabajador($params['id']);
+        $trabajador = Trabajador::ObtenerTrabajador($args['id']);
         if($trabajador != false){
           $payload = json_encode($trabajador);
         }else{
@@ -47,7 +46,7 @@ class TrabajadorController extends Trabajador implements IApiUsable
           ->withHeader('Content-Type', 'application/json');
     }
 
-    //Comente lo anterior porque no da de baja sino que hace baja logica, agrega una fecha de baja
+
     public function BorrarUno($request, $response, $args)
     {
       $params = $request->getParsedBody();
