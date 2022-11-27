@@ -20,6 +20,7 @@ require_once './controllers/TrabajadorController.php';
 require_once './controllers/MesaController.php';
 require_once './controllers/ProductoController.php';
 require_once './controllers/PedidoController.php';
+require_once './controllers/AreaController.php';
 
 // Load ENV
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
@@ -77,6 +78,12 @@ $app->group('/mesas', function (RouteCollectorProxy $group) {
     $group->post('/alta', \PedidoController::class . ':CargarUno');
     $group->put('/modificar', \PedidoController::class . ':ModificarUno');
     $group->delete('/borrar', \PedidoController::class . ':BorrarUno')->add(new isAdmin());
+  })->add(new EstaLogeado());
+
+  //AREAS
+  $app->group('/areas', function (RouteCollectorProxy $group) {
+    $group->get('[/]', \AreaController::class . ':TraerTodos'); 
+    $group->post('/alta', \AreaController::class . ':CargarUno')->add(new isAdmin());
   })->add(new EstaLogeado());
 
 

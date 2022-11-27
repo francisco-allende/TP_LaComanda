@@ -1,61 +1,53 @@
 <?php
 
-require_once './db/DataAccess.php';
+require_once './db/AccesoDatos.php';
 
  class Area {
-        public $area_id;
-        public $area_descripcion;
+        public $id;
+        public $descripcion;
 
         public function __construct(){}
 
-        public static function instanciarArea($area_id){
+        public static function instanciarArea($descripcion){
             $area = new Area();
-            $producto->setAreaIdAndDescripcion($area_id);
+            $area->setDescripcion($descripcion);
             
             return $area;
         }
         //--- Getters ---//
 
         public function getAreaId(){
-            return $this->area_id;
+            return $this->id;
         }
 
         public function getAreaDescripcion(){
-            return $this->area_descripcion;
+            return $this->descripcion;
         }
 
         //--- Setters ---//
 
-        public function setAreaIdAndDescripcion($area_id){
-            $this->area_id = $area_id;
-            switch($area_id){
-                case 1:
-                    $this->area_descripcion = "Barra_Tragos";
-                    break;
-                 case 2:
-                    $this->area_descripcion = "Barra_Cervezas";
-                    break;
-                 case 3:
-                    $this->area_descripcion = "Cocina";
-                    break;
-                 case 4:
-                    $this->area_descripcion = "Candy_Bar";
-                    break;
-                default:
-                    $this->area_descriocion = "Id de area no valido. Elimine este area y mande un nro del 1 al 4";
-            }
+        public function setDescripcion($descripcion){
+            $this->descripcion = $descripcion;
         }
 
-        //--- Insert Area ---//
+        public function CrearArea()
+        {
+            $objAccesoDatos = AccesoDatos::obtenerInstancia();
+    
+            $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO areas (descripcion) VALUES (:descripcion)");
+            
+            $consulta->bindValue(':descripcion', $this->descripcion, PDO::PARAM_STR);
+            $consulta->execute();
+    
+            return $objAccesoDatos->obtenerUltimoId();
+        }
 
-        public function insertArea(){
-            $objDataAccess = DataAccess::getInstance();
-            $sql = "INSERT INTO area (area_description) VALUES (:area_description);";
-            $query = $objDataAccess->prepareQuery($sql);
-            $query->bindValue(':area_description', $this->getAreaDescription());
-            $query->execute();
-
-            return $objDataAccess->getLastInsertedID();
+        public static function ObtenerTodos(){
+            $objAccesoDatos = AccesoDatos::obtenerInstancia();
+            $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM areas");
+            $consulta->execute();
+    
+            return $consulta->fetchAll(PDO::FETCH_CLASS, 'Area');
         }
 
         //--- Update Area ---//
@@ -104,15 +96,5 @@ require_once './db/DataAccess.php';
             return $area;
         }
 
-        //--- Get All Areas ---//
-
-        public static function getAllAreas(){
-            $objDataAccess = DataAccess::getInstance();
-            $sql = "SELECT * FROM area;";
-            $query = $objDataAccess->prepareQuery($sql);
-            $query->execute();
-            $areas = $query->fetchAll(PDO::FETCH_CLASS, 'Area');
-            return $areas;
-        }
  }
 ?>
