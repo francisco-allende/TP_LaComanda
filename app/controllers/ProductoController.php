@@ -49,7 +49,13 @@ class ProductoController extends Producto
     {
         $params = $request->getParsedBody();
 
-        $fueModificado = Producto::ModificarStatusProducto($params['status'], $params['id']);
+        if(isset($params['tiempo_fin']))
+        {
+          $fueModificado = Producto::ModificarStatusProducto($params['status'], $params['id'], $params['tiempo_fin']);
+        }else{
+          $fueModificado = Producto::ModificarStatusProducto($params['status'], $params['id']);
+        }
+        
         if($fueModificado){
           $payload = json_encode(array("mensaje" => "Status de producto modificado con exito"));
         }else{

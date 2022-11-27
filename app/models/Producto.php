@@ -106,10 +106,18 @@ require_once './db/AccesoDatos.php';
         $this->tiempo_para_finalizar = $tiempo_para_finalizar;
     }
 
-    public function calcularTiempoRestante(){
-        $newDate = new DateTime($this->getTiempoInicio());
-        $newDate = $newDate->modify('+'.$this->getTiempoParaFinalizar().' minutes');
-        $this->setTiempoFin($newDate->format('Y-m-d H:i:s'));
+    public static function calcularTiempoRestante($tiempo_fin){
+        //creo una fecha actual ("") y seteo el timezone local
+        $date = date_create("",new DateTimeZone('America/Argentina/Buenos_Aires'));
+        
+        //creo un date con la date del otro y el formate de fecha + hora
+        $newDate = new DateTime(date_format($date,"Y/m/d H:i:s"));
+        
+        //modify esta genial, pero solo sirve para objetos DateTime
+        $newDate = $newDate->modify('+'.$tiempo_fin.'minutes');
+
+        //retorno la new date. Para acceder a su valor, uso el string que retorna format
+        return $newDate;
     }
 
     //--- Database Methods ---///
@@ -128,11 +136,13 @@ require_once './db/AccesoDatos.php';
         $consulta->bindValue(':descripcion', $this->descripcion, PDO::PARAM_STR);
         $consulta->bindValue(':precio', $this->precio, PDO::PARAM_INT);
         
-        $fecha = new DateTime(date("d-m-Y"));
-        $consulta->bindValue(':tiempo_inicio', date_format($fecha, 'Y-m-d H:i:s'));
-        $consulta->bindValue(':tiempo_fin', $this->tiempo_fin);
-       // $this->calcularTiempoRestante();
-        $consulta->bindValue(':tiempo_para_finalizar', null);
+
+        $date = date_create("",new DateTimeZone('America/Argentina/Buenos_Aires'));
+        $newDate = new DateTime(date_format($date,"Y/m/d H:i:s"));
+        $consulta->bindValue(':tiempo_inicio', $newDate->format("Y/m/d H:i:s"));
+
+        $consulta->bindValue(':tiempo_fin', "No sabemos hasta que pase a en preparcion");
+        $consulta->bindValue(':tiempo_para_finalizar', "No sabemos hasta que pase a en preparcion");
         $consulta->execute();
 
         return $objAccesoDatos->obtenerUltimoId();
@@ -166,10 +176,24 @@ require_once './db/AccesoDatos.php';
         return $consulta->fetchObject('Producto');
     }
 
-    public static function ModificarStatusProducto($status, $id)
+    public static function ModificarStatusProducto($status, $id, $tiempo_fin = "")
     {
         $objAccesoDato = AccesoDatos::obtenerInstancia();
-        $consulta = $objAccesoDato->prepararConsulta("UPDATE productos SET status = :status WHERE id = :id");
+        if($status == "en preparacion")
+        {
+            $consulta = $objAccesoDato->prepararConsulta(
+            "UPDATE productos SET status = :status, 
+            tiempo_para_finalizar = :tiempo_para_finalizar,
+            tiempo_fin = :tiempo_fin 
+            WHERE id = :id");
+
+
+            $tiempo_para_finalizar = Producto::calcularTiempoRestante($tiempo_fin);
+            $consulta->bindValue(':tiempo_para_finalizar', $tiempo_fin.='minutes');
+            $consulta->bindValue(':tiempo_fin', $tiempo_para_finalizar->format('H:i:s'));
+        }else{
+            $consulta = $objAccesoDato->prepararConsulta("UPDATE productos SET status = :status WHERE id = :id");
+        }
         $consulta->bindValue(':status', $status, PDO::PARAM_STR);
         $consulta->bindValue(':id', $id, PDO::PARAM_INT);
         $consulta->execute();
