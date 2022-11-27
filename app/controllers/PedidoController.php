@@ -2,7 +2,7 @@
 require_once './models/Pedido.php';
 require_once './interfaces/IApiUsable.php';
 
-class PedidoController extends Pedido //implements IApiUsable
+class PedidoController extends Pedido 
 {
     public function CargarUno($request, $response, $args)
     {

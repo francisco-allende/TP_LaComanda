@@ -14,7 +14,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 require_once './db/AccesoDatos.php';
 require_once './middlewares/isAdmin.php';
-require_once './middlewares/CheckJWT.php';
+require_once './middlewares/EstaLogeado.php';
 
 require_once './controllers/TrabajadorController.php';
 require_once './controllers/MesaController.php';
@@ -39,15 +39,18 @@ $app->addBodyParsingMiddleware();
 
 
 // Routes
+$app->group('/trabajador', function (RouteCollectorProxy $group) {
+  $group->post('/registrar', \TrabajadorController::class . ':Registrar');
+  $group->post('/login', \TrabajadorController::class . ':Verificar');
+});
+
 //TRABAJADORES
 $app->group('/trabajador', function (RouteCollectorProxy $group) {
-    $group->get('[/]', \UsuarioController::class . ':TraerTodos'); 
-    $group->post('/search_by_id', \UsuarioController::class . ':TraerUno'); 
-    $group->post('/alta', \UsuarioController::class . ':CargarUno');
-    $group->put('/modificar', \UsuarioController::class . ':ModificarUno');
-    $group->delete('/borrar', \UsuarioController::class . ':BorrarUno')->add(new isAdmin());
-    $group->post('/login', \UsuarioController::class . ':Verificar');
-  })->add(new CheckJWT());
+    $group->get('[/]', \TrabajadorController::class . ':TraerTodos'); 
+    $group->post('/search_by_id', \TrabajadorController::class . ':TraerUno'); 
+    $group->put('/modificar', \TrabajadorController::class . ':ModificarUno');
+    $group->delete('/borrar', \TrabajadorController::class . ':BorrarUno')->add(new isAdmin());
+  })->add(new EstaLogeado());
 
 //MESAS
 $app->group('/mesas', function (RouteCollectorProxy $group) {
@@ -56,7 +59,7 @@ $app->group('/mesas', function (RouteCollectorProxy $group) {
     $group->post('/alta', \MesaController::class . ':CargarUno');
     $group->put('/modificar', \MesaController::class . ':ModificarUno');
     $group->delete('/borrar', \MesaController::class . ':BorrarUno')->add(new isAdmin());
-  })->add(new CheckJWT());
+  })->add(new EstaLogeado());
 
   //PRODUCTOS
   $app->group('/productos', function (RouteCollectorProxy $group) {
@@ -65,7 +68,7 @@ $app->group('/mesas', function (RouteCollectorProxy $group) {
     $group->post('/alta', \ProductoController::class . ':CargarUno');
     $group->put('/modificar', \ProductoController::class . ':ModificarUno');
     $group->delete('/borrar', \ProductoController::class . ':BorrarUno')->add(new isAdmin());
-  })->add(new CheckJWT());
+  })->add(new EstaLogeado());
 
   //PEDIDOS
   $app->group('/pedidos', function (RouteCollectorProxy $group) {
@@ -74,7 +77,7 @@ $app->group('/mesas', function (RouteCollectorProxy $group) {
     $group->post('/alta', \PedidoController::class . ':CargarUno');
     $group->put('/modificar', \PedidoController::class . ':ModificarUno');
     $group->delete('/borrar', \PedidoController::class . ':BorrarUno')->add(new isAdmin());
-  })->add(new CheckJWT());
+  })->add(new EstaLogeado());
 
 
 

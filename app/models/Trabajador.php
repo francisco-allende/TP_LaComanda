@@ -2,7 +2,7 @@
 
 require_once './db/AccesoDatos.php';
 
-class Usuario{
+class Trabajador{
     
     //--- Atributos ---//
     public $id;
@@ -16,16 +16,16 @@ class Usuario{
     //--- Constructor ---//
     public function __construct(){}
 
-    public static function instanciarUsuario($username, $password, $isAdmin, $rol, $fecha_inicio, $fecha_fin=null){
-        $usuario = new Usuario();
-        $usuario->setUsername($username);
-        $usuario->setPassword($password);
-        $usuario->setIsAdmin($isAdmin);
-        $usuario->setRol($rol);
-        $usuario->setFechaInicio($fecha_inicio);
-        $usuario->setFechaFin($fecha_fin);
+    public static function instanciarTrabajador($username, $password, $isAdmin, $rol, $fecha_inicio, $fecha_fin=null){
+        $trabajador = new trabajador();
+        $trabajador->setUsername($username);
+        $trabajador->setPassword($password);
+        $trabajador->setIsAdmin($isAdmin);
+        $trabajador->setRol($rol);
+        $trabajador->setFechaInicio($fecha_inicio);
+        $trabajador->setFechaFin($fecha_fin);
 
-        return $usuario;
+        return $trabajador;
     }
 
     //--- Getters ---//
@@ -89,12 +89,12 @@ class Usuario{
 
     //--- Database Methods ---///
 
-    public function CrearUsuario()
+    public function CrearTrabajador()
     {
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
 
         $consulta = $objAccesoDatos->prepararConsulta("
-        INSERT INTO usuarios (username, password, isAdmin, rol, fecha_inicio, fecha_fin) 
+        INSERT INTO trabajadores (username, password, isAdmin, rol, fecha_inicio, fecha_fin) 
         VALUES (:username, :password, :isAdmin, :rol, :fecha_inicio, :fecha_fin)");
         
         $consulta->bindValue(':username', $this->username, PDO::PARAM_STR);
@@ -116,20 +116,20 @@ class Usuario{
         $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM trabajadores");
         $consulta->execute();
 
-        return $consulta->fetchAll(PDO::FETCH_CLASS, 'Usuario');
+        return $consulta->fetchAll(PDO::FETCH_CLASS, 'Trabajador');
     }
 
-    public static function ObtenerUsuario($id)
+    public static function ObtenerTrabajador($id)
     {
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
         $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM trabajadores WHERE id = :id");
         $consulta->bindValue(':id', $id);
         $consulta->execute();
 
-        return $consulta->fetchObject('Usuario');
+        return $consulta->fetchObject('Trabajador');
     }
 
-    public static function ModificarUsuario($username, $password, $id)
+    public static function ModificarTrabajador($username, $password, $id)
     {
         $objAccesoDato = AccesoDatos::obtenerInstancia();
         $consulta = $objAccesoDato->prepararConsulta("UPDATE trabajadores SET username = :username, password = :password WHERE id = :id");
@@ -145,10 +145,10 @@ class Usuario{
         }
     }
 
-    public static function BorrarUsuario($id)
+    public static function BorrarTrabajador($id)
     {
         $objAccesoDato = AccesoDatos::obtenerInstancia();
-        //$consulta = $objAccesoDato->prepararConsulta("DELETE FROM usuarios WHERE id = :id;"); Descomentar para borrar enserio
+        //$consulta = $objAccesoDato->prepararConsulta("DELETE FROM trabajadores WHERE id = :id;"); Descomentar para borrar enserio
         $consulta = $objAccesoDato->prepararConsulta("UPDATE trabajadores SET fecha_fin = :fecha_fin WHERE id = :id;");
         $fecha = new DateTime(date("d-m-Y"));
         $consulta->bindValue(':id', $id, PDO::PARAM_INT);
@@ -162,14 +162,14 @@ class Usuario{
         }
     }
 
-    public static function ObtenerUsuarioPorMail($username)
+    public static function ObtenerTrabajadorPorMail($username)
     {
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
         $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM trabajadores WHERE username = :username");
         $consulta->bindValue(':username', $username);
         $consulta->execute();
 
-        $myObj = $consulta->fetchObject('Usuario');
+        $myObj = $consulta->fetchObject('Trabajador');
         if (is_null($myObj)) {
             return null;
         }

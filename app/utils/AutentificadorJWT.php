@@ -1,6 +1,6 @@
 <?php
 
-use Firebase\JWT\JWT; //libreria importada que hace el encode y decode
+use Firebase\JWT\JWT; 
 
 class AutentificadorJWT
 {
@@ -15,15 +15,13 @@ class AutentificadorJWT
             'exp' => $ahora + (60000)*24*365,
             'aud' => self::Aud(),
             'data' => $datos,
-            'app' => "Test JWT MyApi"
+            'app' => "La Comanda"
         );
-        //var_dump($payload);
 
         //siempre reotrna lo mismo. Pero la data encriptada si cambia! Son los datos los que cambian
         return JWT::encode($payload, self::$claveSecreta); 
     }
 
-    //aca con el decode leo y valido el token
     public static function VerificarToken($token)
     {
         if (empty($token)) {
@@ -42,7 +40,6 @@ class AutentificadorJWT
             throw new Exception("No es el usuario valido");
         }
     }
-
 
     public static function ObtenerPayLoad($token)
     {
