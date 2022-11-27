@@ -48,7 +48,7 @@ $app->group('/trabajador', function (RouteCollectorProxy $group) {
 //TRABAJADORES
 $app->group('/trabajador', function (RouteCollectorProxy $group) {
     $group->get('[/]', \TrabajadorController::class . ':TraerTodos'); 
-    $group->get('/search_by_id/{id}', \TrabajadorController::class . ':TraerUno'); 
+    $group->get('/search_by_id/{id}', \TrabajadorController::class . ':TraerUno');
     $group->put('/modificar', \TrabajadorController::class . ':ModificarUno');
     $group->delete('/borrar', \TrabajadorController::class . ':BorrarUno')->add(new isAdmin());
   })->add(new EstaLogeado());
@@ -83,6 +83,7 @@ $app->group('/mesas', function (RouteCollectorProxy $group) {
   //AREAS
   $app->group('/areas', function (RouteCollectorProxy $group) {
     $group->get('[/]', \AreaController::class . ':TraerTodos'); 
+    $group->get('/listar_pendientes/{id}', \AreaController::class . ':ListarPendientes');  
     $group->post('/alta', \AreaController::class . ':CargarUno')->add(new isAdmin());
   })->add(new EstaLogeado());
 

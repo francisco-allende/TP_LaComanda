@@ -26,4 +26,17 @@ class AreaController extends Area
         return $response
           ->withHeader('Content-Type', 'application/json');
     }
+
+    public function ListarPendientes($request, $response, $args)
+    {
+        $area = Area::getAreaById($args['id']);
+        $desc = $area->descripcion;
+
+        $lista = Area::ObtenerPendientesPorArea( $desc);
+        $payload = json_encode(array("lista_pendientes_area_{$desc}" => $lista));
+
+        $response->getBody()->write($payload);
+        return $response
+          ->withHeader('Content-Type', 'application/json');
+    }
 }

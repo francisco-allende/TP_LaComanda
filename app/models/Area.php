@@ -33,21 +33,45 @@ require_once './db/AccesoDatos.php';
         public function CrearArea()
         {
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
-    
             $consulta = $objAccesoDatos->prepararConsulta("INSERT INTO areas (descripcion) VALUES (:descripcion)");
-            
             $consulta->bindValue(':descripcion', $this->descripcion, PDO::PARAM_STR);
             $consulta->execute();
     
             return $objAccesoDatos->obtenerUltimoId();
         }
 
-        public static function ObtenerTodos(){
+        public static function ObtenerTodos()
+        {
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
             $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM areas");
             $consulta->execute();
     
             return $consulta->fetchAll(PDO::FETCH_CLASS, 'Area');
+        }
+
+        public static function ObtenerPendientesPorArea($descripcion)
+        {
+            $objAccesoDatos = AccesoDatos::obtenerInstancia();
+            $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM productos WHERE status = 'pendiente' && area = :descripcion;");
+            $consulta->bindValue(':descripcion', $descripcion, PDO::PARAM_STR);
+            $consulta->execute();
+    
+            return $consulta->fetchAll(PDO::FETCH_CLASS, 'Area');
+        }
+
+        public static function getAreaById($id)
+        {
+            $objAccesoDatos = AccesoDatos::obtenerInstancia();
+            $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM areas WHERE id = :id");
+            $consulta->bindValue(':id', $id);
+            $consulta->execute();
+    
+            $area = $consulta->fetchObject('Area');
+            if(is_null($area)){
+                throw new Exception("El area no existe");
+            }
+            
+            return $area;
         }
 
         //--- Update Area ---//
@@ -73,18 +97,7 @@ require_once './db/AccesoDatos.php';
 
         //--- Get Area ---//
 
-        public static function getAreaById($area_id){
-            $objDataAccess = DataAccess::getInstance();
-            $query = $objDataAccess->prepareQuery("SELECT * FROM area WHERE area_id = :area_id;");
-            $query->bindParam(':area_id', $area_id);
-            $query->execute();
-            $area = $query->fetchObject('Area');
-            if(is_null($area)){
-                throw new Exception("The area doesn't exist.");
-            }
-            
-            return $area;
-        }
+   
 
         public static function getAreaByName($area_name){
             $objDataAccess = DataAccess::getInstance();
