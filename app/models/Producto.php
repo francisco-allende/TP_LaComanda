@@ -16,7 +16,7 @@ require_once './db/AccesoDatos.php';
 
     public function __construct(){}
 
-    public static function instanciarProducto($area, $id_pedido, $status, $descripcion, $precio, $tiempo_inicio, $tiempo_fin = null, $tiempo_para_finalizar = null){
+    public static function instanciarProducto($area, $id_pedido, $status, $descripcion, $precio, $tiempo_inicio = null, $tiempo_fin = null, $tiempo_para_finalizar = null){
         $producto = new Producto();
         $producto->setArea($area);
         $producto->setIdPedidoSegunProducto($id_pedido);
@@ -106,7 +106,7 @@ require_once './db/AccesoDatos.php';
         $this->tiempo_para_finalizar = $tiempo_para_finalizar;
     }
 
-    public static function calcularTiempoRestante($tiempo_fin){
+    public static function AsignarTiempoRestante($tiempo_fin){
         //creo una fecha actual ("") y seteo el timezone local
         $date = date_create("",new DateTimeZone('America/Argentina/Buenos_Aires'));
         
@@ -118,6 +118,19 @@ require_once './db/AccesoDatos.php';
 
         //retorno la new date. Para acceder a su valor, uso el string que retorna format
         return $newDate;
+    }
+
+    //hora de consulta cliente - tiempo fin estipulado = tiempo para finalizar
+    public static function calcularTiempoRestante($tiempo_fin){
+        $date_start = date_create("",new DateTimeZone('America/Argentina/Buenos_Aires'));
+        $date_end = date_create($tiempo_fin,new DateTimeZone('America/Argentina/Buenos_Aires'));
+
+        $newDate = new DateTime(date_format($date_end,"Y/m/d H:i:s"));
+        $newDate = $newDate->modify('-'.$date_start->format("H").'hours');
+        $newDate = $newDate->modify('-'.$date_start->format("i").'minutes');
+        $newDate = $newDate->modify('-'.$date_start->format("s").'seconds');
+
+        return $newDate->format('H:i:s');
     }
 
     //--- Database Methods ---///
@@ -188,8 +201,8 @@ require_once './db/AccesoDatos.php';
             WHERE id = :id");
 
 
-            $tiempo_para_finalizar = Producto::calcularTiempoRestante($tiempo_fin);
-            $consulta->bindValue(':tiempo_para_finalizar', $tiempo_fin.='minutes');
+            $tiempo_para_finalizar = Producto::AsignarTiempoRestante($tiempo_fin);
+            $consulta->bindValue(':tiempo_para_finalizar', $tiempo_fin.=' minutes');
             $consulta->bindValue(':tiempo_fin', $tiempo_para_finalizar->format('H:i:s'));
         }else{
             $consulta = $objAccesoDato->prepararConsulta("UPDATE productos SET status = :status WHERE id = :id");
@@ -205,8 +218,6 @@ require_once './db/AccesoDatos.php';
         }
     }
     
-    
-
     public static function BorrarProducto($id)
     {
         $objAccesoDato = AccesoDatos::obtenerInstancia();

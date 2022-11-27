@@ -9,8 +9,7 @@ class PedidoController extends Pedido
         $params = $request->getParsedBody();
         $imgPath = "Pedido_de_{$params['nombre_cliente']}_mesa_Nro_{$params['id_mesa']}.jpg";
 
-        $pedido = Pedido::instanciarPedido($params['id_mesa'], $params['status'], $params['nombre_cliente'], $imgPath,
-        $params['total_cuenta']);
+        $pedido = Pedido::instanciarPedido($params['id_mesa'], $params['status'], $params['nombre_cliente'], $imgPath);
 
         $pedido->CrearPedido();
         $retorno = ArchivoController::UploadPhoto($imgPath);
@@ -29,6 +28,55 @@ class PedidoController extends Pedido
     {
         $lista = Pedido::ObtenerTodos();
         $payload = json_encode(array("lista_pedidos" => $lista));
+
+        $response->getBody()->write($payload);
+        return $response
+          ->withHeader('Content-Type', 'application/json');
+    }
+
+    public function BorrarUno($request, $response, $args)
+    {
+      $params = $request->getParsedBody();
+
+      $fueBorrado = Pedido::BorrarPedido($params['id']);
+      if($fueBorrado){
+        $payload = json_encode(array("mensaje" => "Pedido borrado con exito"));
+      }else{
+        $payload = json_encode(array("error" => "No se pudo borrar el pedido"));
+      }
+
+      $response->getBody()->write($payload);
+      return $response
+        ->withHeader('Content-Type', 'application/json');
+    }
+
+    public function CuantoFalta($request, $response, $args)
+    {
+        $id_mesa = $args['id_mesa'];
+        $id_pedido = $args['id_pedido'];
+
+        $pedido = Pedido::ObtenerPedidoPorMesa($id_mesa);
+
+        //cuando el cliente desocupa la mesa, se le cambia el id de mesa
+        if($pedido != false && $pedido->id == $id_pedido)
+        {
+          $productos = Pedido::ObtenerProductosDelPedido($id_pedido);
+          if(count($productos) > 0)
+          {
+            $demora = "";
+            for($i = 0; $i < count($productos); $i++){
+              $demora .= "Falta ";
+              $demora .= $productos[$i]->calcularTiempoRestante($productos[$i]->getTiempoFin()); 
+              $demora .= " para el ".$productos[$i]->getDescripcion().PHP_EOL;
+            }
+            $payload = $demora;
+
+          }else{
+            $payload = json_encode(array("Error" => "No hay productos asignados al pedido con ese id"));
+          }
+        }else{
+          $payload = json_encode(array("Error" => "No existe pedido con ese id"));
+        }
 
         $response->getBody()->write($payload);
         return $response

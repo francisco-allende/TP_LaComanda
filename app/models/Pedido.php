@@ -105,5 +105,55 @@ class Pedido{
 
         return $consulta->fetchAll(PDO::FETCH_CLASS, 'Pedido');
     }
+    
+    public static function ObtenerPedido($id)
+    {
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM pedidos WHERE id = :id");
+        $consulta->bindValue(':id', $id);
+        $consulta->execute();
+
+        return $consulta->fetchObject('Pedido');
+    }
+
+    public static function ObtenerPedidoPorMesa($id_mesa)
+    {
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDatos->prepararConsulta(
+            "SELECT pedidos.id, pedidos.id_mesa, pedidos.status, pedidos.nombre_cliente 
+            FROM pedidos
+            WHERE pedidos.id_mesa = :id_mesa");
+        $consulta->bindValue(':id_mesa', $id_mesa);
+        $consulta->execute();
+
+        return $consulta->fetchObject('Pedido');
+    }
+
+    public static function ObtenerProductosDelPedido($id_pedido)
+    {
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDatos->prepararConsulta(
+            "SELECT * 
+            FROM productos 
+            WHERE id_pedido = :id_pedido");
+        $consulta->bindValue(':id_pedido', $id_pedido);
+        $consulta->execute();
+
+        return $consulta->fetchAll(PDO::FETCH_CLASS, 'Producto');
+    }
+
+    public static function BorrarPedido($id)
+    {
+        $objAccesoDato = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDato->prepararConsulta("DELETE FROM pedidos WHERE id = :id;"); 
+        $consulta->bindValue(':id', $id, PDO::PARAM_INT);
+        $consulta->execute();
+
+        if($consulta->rowCount() == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
 ?>

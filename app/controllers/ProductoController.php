@@ -8,7 +8,7 @@ class ProductoController extends Producto
     {
         $params = $request->getParsedBody();
         $producto = Producto::instanciarProducto($params['area'], $params['id_pedido'], $params['status'], $params['descripcion'],
-        $params['precio'], $params['tiempo_inicio'], $params['tiempo_fin']);
+        $params['precio']);
 
         $producto->CrearProducto();
 

@@ -4,7 +4,7 @@ require_once './db/AccesoDatos.php';
 
 class Mesa {
     public $id;
-    public $estado; //libre / ocupada / cerrada
+    public $estado; 
 
     public function __construct() {}
 
@@ -57,6 +57,31 @@ class Mesa {
         $consulta->execute();
 
         return $consulta->fetchAll(PDO::FETCH_CLASS, 'Mesa');
+    }
+
+    public static function ObtenerMesa($id)
+    {
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM mesas WHERE id = :id");
+        $consulta->bindValue(':id', $id);
+        $consulta->execute();
+
+        return $consulta->fetchObject('Mesa');
+    }
+
+    public static function ModificarStatusMesa($estado, $id)
+    {
+        $objAccesoDato = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDato->prepararConsulta("UPDATE mesas SET estado = :estado WHERE id = :id");
+        $consulta->bindValue(':estado', $estado, PDO::PARAM_STR);
+        $consulta->bindValue(':id', $id, PDO::PARAM_INT);
+        $consulta->execute();
+
+        if($consulta->rowCount() == 1){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
 ?>

@@ -53,15 +53,6 @@ $app->group('/trabajador', function (RouteCollectorProxy $group) {
     $group->delete('/borrar', \TrabajadorController::class . ':BorrarUno')->add(new isAdmin());
   })->add(new EstaLogeado());
 
-//MESAS
-$app->group('/mesas', function (RouteCollectorProxy $group) {
-    $group->get('[/]', \MesaController::class . ':TraerTodos'); 
-    $group->get('/search_by_id/{id}', \MesaController::class . ':TraerUno'); 
-    $group->post('/alta', \MesaController::class . ':CargarUno');
-    $group->put('/modificar', \MesaController::class . ':ModificarUno');
-    $group->delete('/borrar', \MesaController::class . ':BorrarUno')->add(new isAdmin());
-  })->add(new EstaLogeado());
-
   //PRODUCTOS
   $app->group('/productos', function (RouteCollectorProxy $group) {
     $group->get('[/]', \ProductoController::class . ':TraerTodos'); 
@@ -75,10 +66,21 @@ $app->group('/mesas', function (RouteCollectorProxy $group) {
   $app->group('/pedidos', function (RouteCollectorProxy $group) {
     $group->get('[/]', \PedidoController::class . ':TraerTodos'); 
     $group->get('/search_by_id/{id}', \PedidoController::class . ':TraerUno'); 
+    $group->get('/cuanto_falta/{id_mesa}/{id_pedido}', \PedidoController::class . ':CuantoFalta');
     $group->post('/alta', \PedidoController::class . ':CargarUno');
     $group->put('/modificar', \PedidoController::class . ':ModificarUno');
-    $group->delete('/borrar', \PedidoController::class . ':BorrarUno')->add(new isAdmin());
+    $group->delete('/borrar', \PedidoController::class . ':BorrarUno');
   })->add(new EstaLogeado());
+
+  //MESAS
+  $app->group('/mesas', function (RouteCollectorProxy $group) {
+    $group->get('[/]', \MesaController::class . ':TraerTodos'); 
+    $group->get('/search_by_id/{id}', \MesaController::class . ':TraerUno'); 
+    $group->post('/alta', \MesaController::class . ':CargarUno');
+    $group->put('/modificar_status', \MesaController::class . ':ModificarStatus');
+    $group->delete('/borrar', \MesaController::class . ':BorrarUno')->add(new isAdmin());
+  })->add(new EstaLogeado());
+
 
   //AREAS
   $app->group('/areas', function (RouteCollectorProxy $group) {

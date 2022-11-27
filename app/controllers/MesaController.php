@@ -8,27 +8,11 @@ class MesaController extends Mesa
     {
         $params = $request->getParsedBody();
 
-        $mesa = Mesa::instanciarMesa($params['id_mozo'], $params['estado']);
+        $mesa = Mesa::instanciarMesa($params['estado']);
 
         $mesa->CrearMesa();
 
         $payload = json_encode(array("mensaje" => "Mesa creada con exito"));
-
-        $response->getBody()->write($payload);
-        return $response
-          ->withHeader('Content-Type', 'application/json');
-    }
-
-    public function TraerUno($request, $response, $args)
-    {
-        $params = $request->getParsedBody();
-
-        $usuario = Mesa::ObtenerMesa($params['id']);
-        if($usuario != false){
-          $payload = json_encode($usuario);
-        }else{
-          $payload = json_encode(array("Error" => "No existe mesa con ese id"));
-        }
 
         $response->getBody()->write($payload);
         return $response
@@ -44,37 +28,23 @@ class MesaController extends Mesa
         return $response
           ->withHeader('Content-Type', 'application/json');
     }
-    
-    public function ModificarUno($request, $response, $args)
+
+    public function ModificarStatus($request, $response, $args)
     {
         $params = $request->getParsedBody();
 
-        $fueModificado = Mesa::ModificarMesa($params['username'], $params['password'], $params['id']);
+        $fueModificado = Mesa::ModificarStatusMesa($params['status'], $params['id']);
+        
         if($fueModificado){
-          $payload = json_encode(array("mensaje" => "Usuario modificado con exito"));
+          $payload = json_encode(array("mensaje" => "Status de la mesa modificado con exito"));
         }else{
-          $payload = json_encode(array("error" => "No se pudo modificar el usuario o no hubo ningun tipo de cambio"));
+          $payload = json_encode(array("error" => "No se pudo modificar el status de la mesa o no hubo ningun tipo de cambio"));
         }
 
         $response->getBody()->write($payload);
         return $response
           ->withHeader('Content-Type', 'application/json');
     }
-
-    //Comente lo anterior porque no da de baja sino que hace baja logica, agrega una fecha de baja
-    public function BorrarUno($request, $response, $args)
-    {
-      $params = $request->getParsedBody();
-
-      $fueBorrado = Usuario::BorrarUsuario($params['id']);
-      if($fueBorrado){
-        $payload = json_encode(array("mensaje" => "Usuario borrado con exito"));
-      }else{
-        $payload = json_encode(array("error" => "No se pudo borrar el usuario"));
-      }
-
-      $response->getBody()->write($payload);
-      return $response
-        ->withHeader('Content-Type', 'application/json');
-    }
+    
+    
 }
