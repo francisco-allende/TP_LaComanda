@@ -1,5 +1,6 @@
 <?php
 require_once './models/Encuesta.php';
+require_once './models/Pedido.php';
 require_once './controllers/ArchivoController.php';
 
 class EncuestaController extends Mesa
@@ -10,18 +11,17 @@ class EncuestaController extends Mesa
     {
         $params = $request->getParsedBody();
 
-        $filePath = $_FILES["file"]['name'];
-        $retorno = ArchivoController::UploadFile($filePath);
+        $pedido = Pedido::ObtenerPedido($params['id_pedido']);
+        if($pedido != false){
+          $encuesta = Encuesta::instanciarEncuesta($params['id_pedido'], $pedido->id_mesa, $params['puntos_mesa'], $params['puntos_restoran'], $params['puntos_mozo'], $params['puntos_cocinero'], $params['comentarios']);
 
-
-      /*
-        $encuesta = Encuesta::instanciarEncuesta($params['estado']);
-
-        $encuesta->CrearEncuesta();
-
-        $payload = json_encode(array("mensaje" => "Encuesta creada con exito"));
-    */
-        $payload = "";
+          $encuesta->CrearEncuesta();
+  
+          $payload = json_encode(array("mensaje" => "Encuesta creada con exito"));
+        }else{
+          $payload = json_encode(array("mensaje" => "No se puede encuestar sobre un pedido inexistente"));
+        }
+      
         $response->getBody()->write($payload);
         return $response
           ->withHeader('Content-Type', 'application/json');
@@ -31,7 +31,7 @@ class EncuestaController extends Mesa
 
     public function TraerTodos($request, $response, $args)
     {
-        $lista = Mesa::ObtenerTodos();
+        $lista = Encuesta::ObtenerTodos();
         $payload = json_encode(array("lista_encuestas" => $lista));
 
         $response->getBody()->write($payload);
