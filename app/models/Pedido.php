@@ -157,6 +157,16 @@ class Pedido{
           $consulta->execute();
       }
 
+      
+      public static function ModificarTotalAPagarPedido($total_cuenta, $id)
+      {
+          $objAccesoDato = AccesoDatos::obtenerInstancia();
+          $consulta = $objAccesoDato->prepararConsulta("UPDATE pedidos SET total_cuenta = :total_cuenta WHERE id = :id");
+          $consulta->bindValue(':total_cuenta', $total_cuenta, PDO::PARAM_STR);
+          $consulta->bindValue(':id', $id, PDO::PARAM_INT);
+          $consulta->execute();
+      }
+
     //---       Delete      ---///
 
     public static function BorrarPedido($id)

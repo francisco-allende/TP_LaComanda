@@ -1,5 +1,6 @@
 <?php
 require_once './models/Pedido.php';
+require_once './models/Mesa.php';
 require_once './controllers/ArchivoController.php';
 
 class PedidoController extends Pedido 
@@ -27,7 +28,7 @@ class PedidoController extends Pedido
           ->withHeader('Content-Type', 'application/json');
     }
 
-      //---   Get  ---///
+      //---   Getters  ---///
 
     public function TraerTodos($request, $response, $args)
     {
@@ -39,6 +40,51 @@ class PedidoController extends Pedido
           ->withHeader('Content-Type', 'application/json');
     }
 
+    public function TraerProductos($request, $response, $args)
+    {
+        $productos = Pedido::ObtenerProductosDelPedido($args['id']);
+        $payload = json_encode(array("lista_productos_pedido_nro_{$args['id']}" => $productos));
+
+        $response->getBody()->write($payload);
+        return $response
+          ->withHeader('Content-Type', 'application/json');
+    }
+
+    public function Cobrar($request, $response, $args)
+    {
+      $params = $request->getParsedBody();
+
+      $pedido = Pedido::ObtenerPedido($params['id']);
+      if($pedido != false || $pedido != null){
+
+        $productos = Pedido::ObtenerProductosDelPedido($pedido->id);
+        $total = 0;
+        $puedoCobrar = true;   
+
+        for($i = 0; $i < count($productos); $i++){
+              if($productos[$i]->getStatus() != "servido"){
+                $puedoCobrar = false;
+                break;
+              }
+              $total += (int) $productos[$i]->getPrecio();
+        }
+
+        if($puedoCobrar){
+            Mesa::ModificarStatusMesa("con cliente pagando", $pedido->getIdMesa());
+            Pedido::ModificarStatusPedido("cobrado", $pedido->getId());
+            Pedido::ModificarTotalAPagarPedido($total, $pedido->getId());
+            $payload = json_encode("Pedido cobrado con exito! Total a pagar: {$total}");
+        }else{
+          $payload = json_encode("Error: No se puede cobrar si no estan todos los platos servidos");
+        }        
+      }else{
+        $payload = json_encode(array("error" => "No se encontro pedido con ese id para cobrar"));
+      }
+
+      $response->getBody()->write($payload);
+      return $response
+        ->withHeader('Content-Type', 'application/json');
+    }
     
 
     //---   Delete  ---///

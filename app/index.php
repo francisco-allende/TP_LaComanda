@@ -70,8 +70,10 @@ $app->group('/trabajador', function (RouteCollectorProxy $group) {
     $group->get('/search_by_id/{id}', \PedidoController::class . ':TraerUno'); 
     $group->get('/cuanto_falta/{id_mesa}/{id_pedido}', \PedidoController::class . ':CuantoFalta');
     $group->get('/cuanto_falta_por_pedido/{id_pedido}', \PedidoController::class . ':CuantoFaltaPorPedido')->add(new isAdmin());
+    $group->get('/mostrar_productos/{id}', \PedidoController::class . ':TraerProductos'); 
     $group->post('/alta', \PedidoController::class . ':CargarUno');
     $group->put('/modificar', \PedidoController::class . ':ModificarUno');
+    $group->put('/cobrar', \PedidoController::class . ':Cobrar');
     $group->delete('/borrar', \PedidoController::class . ':BorrarUno');
   })->add(new EstaLogeado());
 
