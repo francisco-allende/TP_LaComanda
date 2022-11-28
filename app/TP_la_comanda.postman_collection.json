@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "usuarios/",
+			"name": "trabajador/",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -17,7 +17,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjgxMzg1NjgsImV4cCI6MjE5MzczODU2OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsidXN1YXJpbyI6ImZyYW5pdG9vbyIsInBlcmZpbCI6ImFkbWluIiwiYWxpYXMiOiJmcmFuIn0sImFwcCI6IlRlc3QgSldUIE15QXBpIn0.mD0EuOpsDzYR2Znecwpjy6jcwQdLB9FyDuTeLVbKLxQ",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1MDc4MjQsImV4cCI6MjE5NTEwNzgyNCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjUsInVzZXJuYW1lIjoianVhbmNpdG8yIiwicGFzc3dvcmQiOiIkMnkkMTAkeGVoamMzYmZ0VXNxeHpMVkVFbGVCdWJwejN3OUVqS1hUR1lZOHFBSGgzQVh1bDhWaEFNdXEiLCJpc0FkbWluIjoibm8iLCJ1c2VyX3R5cGUiOiJjb2NpbmVybyIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjciLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.hO2hLdxPvAEtdKEGMJ7eahp0u9jHAtylnf3MppciK4o",
 							"type": "string"
 						}
 					]
@@ -29,7 +29,7 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "http://localhost/tp_laComanda/la_comanda/app/usuarios/",
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/trabajador/",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -38,7 +38,7 @@
 						"tp_laComanda",
 						"la_comanda",
 						"app",
-						"usuarios",
+						"trabajador",
 						""
 					]
 				}
@@ -46,7 +46,47 @@
 			"response": []
 		},
 		{
-			"name": "usuarios/alta",
+			"name": "trabajador/search_by_id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1MDgwMzksImV4cCI6MjE5NTEwODAzOSwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjUsInVzZXJuYW1lIjoianVhbmNpdG8yIiwicGFzc3dvcmQiOiIkMnkkMTAkeGVoamMzYmZ0VXNxeHpMVkVFbGVCdWJwejN3OUVqS1hUR1lZOHFBSGgzQVh1bDhWaEFNdXEiLCJpc0FkbWluIjoibm8iLCJyb2wiOiJjb2NpbmVybyIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjciLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.FZAjGY4TlhaPQ-6sNAtxjvFFhveETkXagC2KWH7YTbQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/trabajador/search_by_id/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"trabajador",
+						"search_by_id",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "trabajador/registrar",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -55,22 +95,22 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "juancito",
+							"value": "soy_socio3",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "123456",
+							"value": "soy_socio3",
 							"type": "text"
 						},
 						{
 							"key": "isAdmin",
-							"value": "no",
+							"value": "si",
 							"type": "text"
 						},
 						{
-							"key": "user_type",
-							"value": "cocinero",
+							"key": "rol",
+							"value": "socio",
 							"type": "text"
 						},
 						{
@@ -81,12 +121,13 @@
 						{
 							"key": "fecha_fin",
 							"value": "2021-07-2",
-							"type": "text"
+							"type": "text",
+							"disabled": true
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost/tp_laComanda/la_comanda/app/usuarios/alta",
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/trabajador/registrar",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -95,22 +136,22 @@
 						"tp_laComanda",
 						"la_comanda",
 						"app",
-						"usuarios",
-						"alta"
+						"trabajador",
+						"registrar"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "usuarios/search_by_id",
+			"name": "trabajador/login",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjgxMzg1NjgsImV4cCI6MjE5MzczODU2OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsidXN1YXJpbyI6ImZyYW5pdG9vbyIsInBlcmZpbCI6ImFkbWluIiwiYWxpYXMiOiJmcmFuIn0sImFwcCI6IlRlc3QgSldUIE15QXBpIn0.mD0EuOpsDzYR2Znecwpjy6jcwQdLB9FyDuTeLVbKLxQ",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njg0NjMyNjksImV4cCI6MjE5NDA2MzI2OSwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjIsIm1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJ0aXBvIjoiYWRtaW4iLCJjbGF2ZSI6IiQyeSQxMCRuR3ZlY3FROGFKalpXVWJSUHFBck5PUXhZRnJsbHZKSC5tUlY1ZmxJYWdoR0dDc0gwVjMuYSJ9LCJhcHAiOiJUZXN0IEpXVCBNeUFwaSJ9.Vdhsqm2-3Uw-jc0e32wtFrlaag3RbGybEQQ_Ga4ROkM",
 							"type": "string"
 						}
 					]
@@ -121,14 +162,19 @@
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "id",
-							"value": "2",
+							"key": "username",
+							"value": "soy_mozo2",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "soy_mozo2",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost/tp_laComanda/la_comanda/app/usuarios/search_by_id",
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/trabajador/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -137,22 +183,22 @@
 						"tp_laComanda",
 						"la_comanda",
 						"app",
-						"usuarios",
-						"search_by_id"
+						"trabajador",
+						"login"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "usuarios/modificar",
+			"name": "trabajador/modificar",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjgxMzg1NjgsImV4cCI6MjE5MzczODU2OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsidXN1YXJpbyI6ImZyYW5pdG9vbyIsInBlcmZpbCI6ImFkbWluIiwiYWxpYXMiOiJmcmFuIn0sImFwcCI6IlRlc3QgSldUIE15QXBpIn0.mD0EuOpsDzYR2Znecwpjy6jcwQdLB9FyDuTeLVbKLxQ",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1MDgwMzksImV4cCI6MjE5NTEwODAzOSwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjUsInVzZXJuYW1lIjoianVhbmNpdG8yIiwicGFzc3dvcmQiOiIkMnkkMTAkeGVoamMzYmZ0VXNxeHpMVkVFbGVCdWJwejN3OUVqS1hUR1lZOHFBSGgzQVh1bDhWaEFNdXEiLCJpc0FkbWluIjoibm8iLCJyb2wiOiJjb2NpbmVybyIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjciLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.FZAjGY4TlhaPQ-6sNAtxjvFFhveETkXagC2KWH7YTbQ",
 							"type": "string"
 						}
 					]
@@ -164,12 +210,12 @@
 					"urlencoded": [
 						{
 							"key": "username",
-							"value": "majin boo",
+							"value": "soy_mozo",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "bubu123",
+							"value": "123456",
 							"type": "text"
 						},
 						{
@@ -180,7 +226,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost/tp_laComanda/la_comanda/app/usuarios/modificar",
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/trabajador/modificar",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -189,7 +235,7 @@
 						"tp_laComanda",
 						"la_comanda",
 						"app",
-						"usuarios",
+						"trabajador",
 						"modificar"
 					]
 				}
@@ -197,14 +243,14 @@
 			"response": []
 		},
 		{
-			"name": "usuarios/borrar",
+			"name": "trabajador/borrar",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjgxMzg1NjgsImV4cCI6MjE5MzczODU2OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsidXN1YXJpbyI6ImZyYW5pdG9vbyIsInBlcmZpbCI6ImFkbWluIiwiYWxpYXMiOiJmcmFuIn0sImFwcCI6IlRlc3QgSldUIE15QXBpIn0.mD0EuOpsDzYR2Znecwpjy6jcwQdLB9FyDuTeLVbKLxQ",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1MTYyMTksImV4cCI6MjE5NTExNjIxOSwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjYsInVzZXJuYW1lIjoianVhbmNpdG8zIiwicGFzc3dvcmQiOiIkMnkkMTAkaFlhNTV4TGY2d1ZQUmhWR2xoZTJGT1JxZXIyaVIxRFdQd2dscjVFVjJlaVp1eE9nVE5zamUiLCJpc0FkbWluIjoic2kiLCJyb2wiOiJzb2NpbyIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjciLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.H_vyzBdZKH43YrrHXYHUb3mkN5Jll8D0kEZvXyr4c14",
 							"type": "string"
 						}
 					]
@@ -218,16 +264,11 @@
 							"key": "id",
 							"value": "3",
 							"type": "text"
-						},
-						{
-							"key": "esAdmin",
-							"value": "si",
-							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost/tp_laComanda/la_comanda/app/usuarios/borrar",
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/trabajador/borrar",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -236,7 +277,580 @@
 						"tp_laComanda",
 						"la_comanda",
 						"app",
-						"usuarios",
+						"trabajador",
+						"borrar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "productos/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1MDgwMzksImV4cCI6MjE5NTEwODAzOSwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjUsInVzZXJuYW1lIjoianVhbmNpdG8yIiwicGFzc3dvcmQiOiIkMnkkMTAkeGVoamMzYmZ0VXNxeHpMVkVFbGVCdWJwejN3OUVqS1hUR1lZOHFBSGgzQVh1bDhWaEFNdXEiLCJpc0FkbWluIjoibm8iLCJyb2wiOiJjb2NpbmVybyIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjciLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.FZAjGY4TlhaPQ-6sNAtxjvFFhveETkXagC2KWH7YTbQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/productos/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"productos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "productos/search_by_id/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1MDgwMzksImV4cCI6MjE5NTEwODAzOSwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjUsInVzZXJuYW1lIjoianVhbmNpdG8yIiwicGFzc3dvcmQiOiIkMnkkMTAkeGVoamMzYmZ0VXNxeHpMVkVFbGVCdWJwejN3OUVqS1hUR1lZOHFBSGgzQVh1bDhWaEFNdXEiLCJpc0FkbWluIjoibm8iLCJyb2wiOiJjb2NpbmVybyIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjciLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.FZAjGY4TlhaPQ-6sNAtxjvFFhveETkXagC2KWH7YTbQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/productos/search_by_id/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"productos",
+						"search_by_id",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "productos/alta",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1MDgwMzksImV4cCI6MjE5NTEwODAzOSwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjUsInVzZXJuYW1lIjoianVhbmNpdG8yIiwicGFzc3dvcmQiOiIkMnkkMTAkeGVoamMzYmZ0VXNxeHpMVkVFbGVCdWJwejN3OUVqS1hUR1lZOHFBSGgzQVh1bDhWaEFNdXEiLCJpc0FkbWluIjoibm8iLCJyb2wiOiJjb2NpbmVybyIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjciLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.FZAjGY4TlhaPQ-6sNAtxjvFFhveETkXagC2KWH7YTbQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "area",
+							"value": "candy bar",
+							"type": "text"
+						},
+						{
+							"key": "id_pedido",
+							"value": "8",
+							"type": "text"
+						},
+						{
+							"key": "descripcion",
+							"value": "flan",
+							"type": "text"
+						},
+						{
+							"key": "precio",
+							"value": "700",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/productos/alta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"productos",
+						"alta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "productos/preparar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1MDk4MjcsImV4cCI6MjE5NTEwOTgyNywiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjYsInVzZXJuYW1lIjoianVhbmNpdG8zIiwicGFzc3dvcmQiOiIkMnkkMTAkaFlhNTV4TGY2d1ZQUmhWR2xoZTJGT1JxZXIyaVIxRFdQd2dscjVFVjJlaVp1eE9nVE5zamUiLCJpc0FkbWluIjoic2kiLCJyb2wiOiJzb2NpbyIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjciLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.IQxNyx1fSVbLa1rFE-IcAicN05gGNQtswi-Bw2aNy-0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "21",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "en preparacion",
+							"type": "text"
+						},
+						{
+							"key": "tiempo_fin",
+							"value": "30",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/productos/preparar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"productos",
+						"preparar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "productos/listo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1NjgwNzgsImV4cCI6MjE5NTE2ODA3OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjEwLCJ1c2VybmFtZSI6InNveV9zb2NpbzIiLCJwYXNzd29yZCI6IiQyeSQxMCR2eDA3dG5qUklRcE5FbjVDNW1wMkguNk9hMk9jVjh3YlB2TFAxZ3dpN3dCaTdhNUlXeUJiVyIsImlzQWRtaW4iOiJzaSIsInJvbCI6InNvY2lvIiwiZmVjaGFfaW5pY2lvIjoiMjAyMi0xMS0yNyIsImZlY2hhX2ZpbmFsIjpudWxsfSwiYXBwIjoiTGEgQ29tYW5kYSJ9.6CWtxcC43GmbEYKcOVBuF5DWV3PjiWgzU2Lx1E6zy2E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "21",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "listo",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/productos/listo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"productos",
+						"listo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "productos/servir",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk2MTI3NzgsImV4cCI6MjE5NTIxMjc3OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjEyLCJ1c2VybmFtZSI6InNveV9tb3pvMiIsInBhc3N3b3JkIjoiJDJ5JDEwJDJhSGF2cGdLcXc2UXRwdko0TVYwZC5PNEVcL1hjT2FsMXRcLzlcL1FxV2JQb3BvazI4S3FQTDlLIiwiaXNBZG1pbiI6Im5vIiwicm9sIjoibW96byIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjgiLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.Ghe6XHovGMZ-HjhfLmkbEcS0FoNDcRsIPvTtRKbRdTA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "21",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/productos/servir",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"productos",
+						"servir"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "productos/borrar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1MDk4MjcsImV4cCI6MjE5NTEwOTgyNywiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjYsInVzZXJuYW1lIjoianVhbmNpdG8zIiwicGFzc3dvcmQiOiIkMnkkMTAkaFlhNTV4TGY2d1ZQUmhWR2xoZTJGT1JxZXIyaVIxRFdQd2dscjVFVjJlaVp1eE9nVE5zamUiLCJpc0FkbWluIjoic2kiLCJyb2wiOiJzb2NpbyIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjciLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.IQxNyx1fSVbLa1rFE-IcAicN05gGNQtswi-Bw2aNy-0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "13",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/productos/borrar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"productos",
+						"borrar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pedidos/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1MDk4MjcsImV4cCI6MjE5NTEwOTgyNywiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjYsInVzZXJuYW1lIjoianVhbmNpdG8zIiwicGFzc3dvcmQiOiIkMnkkMTAkaFlhNTV4TGY2d1ZQUmhWR2xoZTJGT1JxZXIyaVIxRFdQd2dscjVFVjJlaVp1eE9nVE5zamUiLCJpc0FkbWluIjoic2kiLCJyb2wiOiJzb2NpbyIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjciLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.IQxNyx1fSVbLa1rFE-IcAicN05gGNQtswi-Bw2aNy-0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/pedidos/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"pedidos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pedidos/mostrar_productos/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1NjgwNzgsImV4cCI6MjE5NTE2ODA3OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjEwLCJ1c2VybmFtZSI6InNveV9zb2NpbzIiLCJwYXNzd29yZCI6IiQyeSQxMCR2eDA3dG5qUklRcE5FbjVDNW1wMkguNk9hMk9jVjh3YlB2TFAxZ3dpN3dCaTdhNUlXeUJiVyIsImlzQWRtaW4iOiJzaSIsInJvbCI6InNvY2lvIiwiZmVjaGFfaW5pY2lvIjoiMjAyMi0xMS0yNyIsImZlY2hhX2ZpbmFsIjpudWxsfSwiYXBwIjoiTGEgQ29tYW5kYSJ9.6CWtxcC43GmbEYKcOVBuF5DWV3PjiWgzU2Lx1E6zy2E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/pedidos/mostrar_productos/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"pedidos",
+						"mostrar_productos",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pedidos/cuanto_falta/id_mesa/id_pedido",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1NjI4MDUsImV4cCI6MjE5NTE2MjgwNSwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjksInVzZXJuYW1lIjoic295X2Jhcm1hbiIsInBhc3N3b3JkIjoiJDJ5JDEwJGwyTlRMT1B4cE8uSktcL09qZFwvUlRSdWY5WWRQWXYuQWtmWTM1N0pJdkhTdzVvT3h1c3Z2UFciLCJpc0FkbWluIjoibm8iLCJyb2wiOiJiYXJtYW4iLCJmZWNoYV9pbmljaW8iOiIyMDIyLTExLTI3IiwiZmVjaGFfZmluYWwiOm51bGx9LCJhcHAiOiJMYSBDb21hbmRhIn0.5X00o1GPtW3iI5g2Pg6bu8LWHIvxyqeJ2k7uTs3TOK0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/pedidos/cuanto_falta/4/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"pedidos",
+						"cuanto_falta",
+						"4",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pedidos/cuanto_falta_por_pedido/5",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1NjgwNzgsImV4cCI6MjE5NTE2ODA3OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjEwLCJ1c2VybmFtZSI6InNveV9zb2NpbzIiLCJwYXNzd29yZCI6IiQyeSQxMCR2eDA3dG5qUklRcE5FbjVDNW1wMkguNk9hMk9jVjh3YlB2TFAxZ3dpN3dCaTdhNUlXeUJiVyIsImlzQWRtaW4iOiJzaSIsInJvbCI6InNvY2lvIiwiZmVjaGFfaW5pY2lvIjoiMjAyMi0xMS0yNyIsImZlY2hhX2ZpbmFsIjpudWxsfSwiYXBwIjoiTGEgQ29tYW5kYSJ9.6CWtxcC43GmbEYKcOVBuF5DWV3PjiWgzU2Lx1E6zy2E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/pedidos/cuanto_falta_por_pedido/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"pedidos",
+						"cuanto_falta_por_pedido",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pedidos/alta",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk2MTE1ODgsImV4cCI6MjE5NTIxMTU4OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjEyLCJ1c2VybmFtZSI6InNveV9tb3pvMiIsInBhc3N3b3JkIjoiJDJ5JDEwJDJhSGF2cGdLcXc2UXRwdko0TVYwZC5PNEVcL1hjT2FsMXRcLzlcL1FxV2JQb3BvazI4S3FQTDlLIiwiaXNBZG1pbiI6Im5vIiwicm9sIjoibW96byIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjgiLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.KCNUXsedZ8Xla4bOr57e5UHYey0w39TrYSTZvMROo2s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id_mesa",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": " nombre_cliente",
+							"value": "jhony",
+							"type": "text"
+						},
+						{
+							"key": "foto",
+							"type": "file",
+							"src": "/C:/Users/cataa/Desktop/imagenes_tpcomanda/copias.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/pedidos/alta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"pedidos",
+						"alta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pedidos/cobrar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk2MTI3NzgsImV4cCI6MjE5NTIxMjc3OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjEyLCJ1c2VybmFtZSI6InNveV9tb3pvMiIsInBhc3N3b3JkIjoiJDJ5JDEwJDJhSGF2cGdLcXc2UXRwdko0TVYwZC5PNEVcL1hjT2FsMXRcLzlcL1FxV2JQb3BvazI4S3FQTDlLIiwiaXNBZG1pbiI6Im5vIiwicm9sIjoibW96byIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjgiLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.Ghe6XHovGMZ-HjhfLmkbEcS0FoNDcRsIPvTtRKbRdTA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "8",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/pedidos/cobrar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"pedidos",
+						"cobrar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pedidos/borrar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1NjI4MDUsImV4cCI6MjE5NTE2MjgwNSwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjksInVzZXJuYW1lIjoic295X2Jhcm1hbiIsInBhc3N3b3JkIjoiJDJ5JDEwJGwyTlRMT1B4cE8uSktcL09qZFwvUlRSdWY5WWRQWXYuQWtmWTM1N0pJdkhTdzVvT3h1c3Z2UFciLCJpc0FkbWluIjoibm8iLCJyb2wiOiJiYXJtYW4iLCJmZWNoYV9pbmljaW8iOiIyMDIyLTExLTI3IiwiZmVjaGFfZmluYWwiOm51bGx9LCJhcHAiOiJMYSBDb21hbmRhIn0.5X00o1GPtW3iI5g2Pg6bu8LWHIvxyqeJ2k7uTs3TOK0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "4",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/pedidos/borrar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"pedidos",
 						"borrar"
 					]
 				}
@@ -251,7 +865,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjgxMzg1NjgsImV4cCI6MjE5MzczODU2OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsidXN1YXJpbyI6ImZyYW5pdG9vbyIsInBlcmZpbCI6ImFkbWluIiwiYWxpYXMiOiJmcmFuIn0sImFwcCI6IlRlc3QgSldUIE15QXBpIn0.mD0EuOpsDzYR2Znecwpjy6jcwQdLB9FyDuTeLVbKLxQ",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1NjI4MDUsImV4cCI6MjE5NTE2MjgwNSwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjksInVzZXJuYW1lIjoic295X2Jhcm1hbiIsInBhc3N3b3JkIjoiJDJ5JDEwJGwyTlRMT1B4cE8uSktcL09qZFwvUlRSdWY5WWRQWXYuQWtmWTM1N0pJdkhTdzVvT3h1c3Z2UFciLCJpc0FkbWluIjoibm8iLCJyb2wiOiJiYXJtYW4iLCJmZWNoYV9pbmljaW8iOiIyMDIyLTExLTI3IiwiZmVjaGFfZmluYWwiOm51bGx9LCJhcHAiOiJMYSBDb21hbmRhIn0.5X00o1GPtW3iI5g2Pg6bu8LWHIvxyqeJ2k7uTs3TOK0",
 							"type": "string"
 						}
 					]
@@ -283,7 +897,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjgxMzg1NjgsImV4cCI6MjE5MzczODU2OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsidXN1YXJpbyI6ImZyYW5pdG9vbyIsInBlcmZpbCI6ImFkbWluIiwiYWxpYXMiOiJmcmFuIn0sImFwcCI6IlRlc3QgSldUIE15QXBpIn0.mD0EuOpsDzYR2Znecwpjy6jcwQdLB9FyDuTeLVbKLxQ",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1NjgwNzgsImV4cCI6MjE5NTE2ODA3OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjEwLCJ1c2VybmFtZSI6InNveV9zb2NpbzIiLCJwYXNzd29yZCI6IiQyeSQxMCR2eDA3dG5qUklRcE5FbjVDNW1wMkguNk9hMk9jVjh3YlB2TFAxZ3dpN3dCaTdhNUlXeUJiVyIsImlzQWRtaW4iOiJzaSIsInJvbCI6InNvY2lvIiwiZmVjaGFfaW5pY2lvIjoiMjAyMi0xMS0yNyIsImZlY2hhX2ZpbmFsIjpudWxsfSwiYXBwIjoiTGEgQ29tYW5kYSJ9.6CWtxcC43GmbEYKcOVBuF5DWV3PjiWgzU2Lx1E6zy2E",
 							"type": "string"
 						}
 					]
@@ -294,13 +908,8 @@
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "id_mozo",
-							"value": "1",
-							"type": "text"
-						},
-						{
 							"key": "estado",
-							"value": "ocupada",
+							"value": "libre",
 							"type": "text"
 						}
 					]
@@ -323,22 +932,37 @@
 			"response": []
 		},
 		{
-			"name": "productos/",
+			"name": "mesas/modificar_status",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjgxMzg1NjgsImV4cCI6MjE5MzczODU2OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsidXN1YXJpbyI6ImZyYW5pdG9vbyIsInBlcmZpbCI6ImFkbWluIiwiYWxpYXMiOiJmcmFuIn0sImFwcCI6IlRlc3QgSldUIE15QXBpIn0.mD0EuOpsDzYR2Znecwpjy6jcwQdLB9FyDuTeLVbKLxQ",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1NjI4MDUsImV4cCI6MjE5NTE2MjgwNSwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjksInVzZXJuYW1lIjoic295X2Jhcm1hbiIsInBhc3N3b3JkIjoiJDJ5JDEwJGwyTlRMT1B4cE8uSktcL09qZFwvUlRSdWY5WWRQWXYuQWtmWTM1N0pJdkhTdzVvT3h1c3Z2UFciLCJpc0FkbWluIjoibm8iLCJyb2wiOiJiYXJtYW4iLCJmZWNoYV9pbmljaW8iOiIyMDIyLTExLTI3IiwiZmVjaGFfZmluYWwiOm51bGx9LCJhcHAiOiJMYSBDb21hbmRhIn0.5X00o1GPtW3iI5g2Pg6bu8LWHIvxyqeJ2k7uTs3TOK0",
 							"type": "string"
 						}
 					]
 				},
-				"method": "GET",
+				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "status",
+							"value": "con cliente esperando pedido",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
-					"raw": "http://localhost/tp_laComanda/la_comanda/app/productos/",
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/mesas/modificar_status",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -347,70 +971,129 @@
 						"tp_laComanda",
 						"la_comanda",
 						"app",
-						"productos",
-						""
+						"mesas",
+						"modificar_status"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "productos/alta",
+			"name": "mesas/levantar",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjgxMzg1NjgsImV4cCI6MjE5MzczODU2OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsidXN1YXJpbyI6ImZyYW5pdG9vbyIsInBlcmZpbCI6ImFkbWluIiwiYWxpYXMiOiJmcmFuIn0sImFwcCI6IlRlc3QgSldUIE15QXBpIn0.mD0EuOpsDzYR2Znecwpjy6jcwQdLB9FyDuTeLVbKLxQ",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk2MTI3NzgsImV4cCI6MjE5NTIxMjc3OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjEyLCJ1c2VybmFtZSI6InNveV9tb3pvMiIsInBhc3N3b3JkIjoiJDJ5JDEwJDJhSGF2cGdLcXc2UXRwdko0TVYwZC5PNEVcL1hjT2FsMXRcLzlcL1FxV2JQb3BvazI4S3FQTDlLIiwiaXNBZG1pbiI6Im5vIiwicm9sIjoibW96byIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjgiLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.Ghe6XHovGMZ-HjhfLmkbEcS0FoNDcRsIPvTtRKbRdTA",
 							"type": "string"
 						}
 					]
 				},
-				"method": "POST",
+				"method": "PUT",
 				"header": [],
 				"body": {
-					"mode": "formdata",
-					"formdata": [
+					"mode": "urlencoded",
+					"urlencoded": [
 						{
-							"key": "area",
-							"value": "cocina",
+							"key": "id",
+							"value": "3",
 							"type": "text"
-						},
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/mesas/levantar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"mesas",
+						"levantar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mesas/cerrar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1NjgwNzgsImV4cCI6MjE5NTE2ODA3OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjEwLCJ1c2VybmFtZSI6InNveV9zb2NpbzIiLCJwYXNzd29yZCI6IiQyeSQxMCR2eDA3dG5qUklRcE5FbjVDNW1wMkguNk9hMk9jVjh3YlB2TFAxZ3dpN3dCaTdhNUlXeUJiVyIsImlzQWRtaW4iOiJzaSIsInJvbCI6InNvY2lvIiwiZmVjaGFfaW5pY2lvIjoiMjAyMi0xMS0yNyIsImZlY2hhX2ZpbmFsIjpudWxsfSwiYXBwIjoiTGEgQ29tYW5kYSJ9.6CWtxcC43GmbEYKcOVBuF5DWV3PjiWgzU2Lx1E6zy2E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/mesas/cerrar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"mesas",
+						"cerrar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mesas/cliente_cambia_mesa",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk2MTE1ODgsImV4cCI6MjE5NTIxMTU4OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjEyLCJ1c2VybmFtZSI6InNveV9tb3pvMiIsInBhc3N3b3JkIjoiJDJ5JDEwJDJhSGF2cGdLcXc2UXRwdko0TVYwZC5PNEVcL1hjT2FsMXRcLzlcL1FxV2JQb3BvazI4S3FQTDlLIiwiaXNBZG1pbiI6Im5vIiwicm9sIjoibW96byIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjgiLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.KCNUXsedZ8Xla4bOr57e5UHYey0w39TrYSTZvMROo2s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
 						{
 							"key": "id_pedido",
-							"value": "1",
+							"value": "8",
 							"type": "text"
 						},
 						{
-							"key": "status",
-							"value": "en preparacion",
-							"type": "text"
-						},
-						{
-							"key": "descripcion",
-							"value": "6 emapanadasde  jyq",
-							"type": "text"
-						},
-						{
-							"key": "precio",
-							"value": "699",
-							"type": "text"
-						},
-						{
-							"key": "tiempo_inicio",
-							"value": "2022-07-01",
-							"type": "text"
-						},
-						{
-							"key": "tiempo_fin",
-							"value": "2022-07-02",
+							"key": "id_nueva_mesa",
+							"value": "3",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost/tp_laComanda/la_comanda/app/productos/alta",
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/mesas/cliente_cambia_mesa",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -419,22 +1102,64 @@
 						"tp_laComanda",
 						"la_comanda",
 						"app",
-						"productos",
-						"alta"
+						"mesas",
+						"cliente_cambia_mesa"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "pedidos/",
+			"name": "mesas/borrar",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjgxMzg1NjgsImV4cCI6MjE5MzczODU2OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsidXN1YXJpbyI6ImZyYW5pdG9vbyIsInBlcmZpbCI6ImFkbWluIiwiYWxpYXMiOiJmcmFuIn0sImFwcCI6IlRlc3QgSldUIE15QXBpIn0.mD0EuOpsDzYR2Znecwpjy6jcwQdLB9FyDuTeLVbKLxQ",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk2MTA3NzgsImV4cCI6MjE5NTIxMDc3OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjEwLCJ1c2VybmFtZSI6InNveV9zb2NpbzIiLCJwYXNzd29yZCI6IiQyeSQxMCR2eDA3dG5qUklRcE5FbjVDNW1wMkguNk9hMk9jVjh3YlB2TFAxZ3dpN3dCaTdhNUlXeUJiVyIsImlzQWRtaW4iOiJzaSIsInJvbCI6InNvY2lvIiwiZmVjaGFfaW5pY2lvIjoiMjAyMi0xMS0yNyIsImZlY2hhX2ZpbmFsIjpudWxsfSwiYXBwIjoiTGEgQ29tYW5kYSJ9.R9ukGFIWNbaq6sT4fsea7zauHEqRh60DTCE25_zEesM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/mesas/borrar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"mesas",
+						"borrar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "areas/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1MDk4MjcsImV4cCI6MjE5NTEwOTgyNywiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjYsInVzZXJuYW1lIjoianVhbmNpdG8zIiwicGFzc3dvcmQiOiIkMnkkMTAkaFlhNTV4TGY2d1ZQUmhWR2xoZTJGT1JxZXIyaVIxRFdQd2dscjVFVjJlaVp1eE9nVE5zamUiLCJpc0FkbWluIjoic2kiLCJyb2wiOiJzb2NpbyIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjciLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.IQxNyx1fSVbLa1rFE-IcAicN05gGNQtswi-Bw2aNy-0",
 							"type": "string"
 						}
 					]
@@ -442,7 +1167,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost/tp_laComanda/la_comanda/app/pedidos/",
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/areas/",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -451,7 +1176,7 @@
 						"tp_laComanda",
 						"la_comanda",
 						"app",
-						"pedidos",
+						"areas",
 						""
 					]
 				}
@@ -459,14 +1184,14 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost/tp_laComanda/la_comanda/app/pedidos/alta",
+			"name": "areas/alta",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NjgxMzg1NjgsImV4cCI6MjE5MzczODU2OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsidXN1YXJpbyI6ImZyYW5pdG9vbyIsInBlcmZpbCI6ImFkbWluIiwiYWxpYXMiOiJmcmFuIn0sImFwcCI6IlRlc3QgSldUIE15QXBpIn0.mD0EuOpsDzYR2Znecwpjy6jcwQdLB9FyDuTeLVbKLxQ",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1MDk4MjcsImV4cCI6MjE5NTEwOTgyNywiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjYsInVzZXJuYW1lIjoianVhbmNpdG8zIiwicGFzc3dvcmQiOiIkMnkkMTAkaFlhNTV4TGY2d1ZQUmhWR2xoZTJGT1JxZXIyaVIxRFdQd2dscjVFVjJlaVp1eE9nVE5zamUiLCJpc0FkbWluIjoic2kiLCJyb2wiOiJzb2NpbyIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjciLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.IQxNyx1fSVbLa1rFE-IcAicN05gGNQtswi-Bw2aNy-0",
 							"type": "string"
 						}
 					]
@@ -477,34 +1202,14 @@
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "id_mesa",
-							"value": "1",
-							"type": "text"
-						},
-						{
-							"key": "status",
-							"value": "en preparacion",
-							"type": "text"
-						},
-						{
-							"key": " nombre_cliente",
-							"value": "pepe hambriento",
-							"type": "text"
-						},
-						{
-							"key": "foto",
-							"value": "path/blabla/food.jpg",
-							"type": "text"
-						},
-						{
-							"key": "total_cuenta",
-							"value": "699",
+							"key": "descripcion",
+							"value": "candy bar",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost/tp_laComanda/la_comanda/app/pedidos/alta",
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/areas/alta",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -513,8 +1218,107 @@
 						"tp_laComanda",
 						"la_comanda",
 						"app",
-						"pedidos",
+						"areas",
 						"alta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "areas/listar_pendientes/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1MTYyMTksImV4cCI6MjE5NTExNjIxOSwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjYsInVzZXJuYW1lIjoianVhbmNpdG8zIiwicGFzc3dvcmQiOiIkMnkkMTAkaFlhNTV4TGY2d1ZQUmhWR2xoZTJGT1JxZXIyaVIxRFdQd2dscjVFVjJlaVp1eE9nVE5zamUiLCJpc0FkbWluIjoic2kiLCJyb2wiOiJzb2NpbyIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjciLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.H_vyzBdZKH43YrrHXYHUb3mkN5Jll8D0kEZvXyr4c14",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/areas/listar_pendientes/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"areas",
+						"listar_pendientes",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "areas/listar_en_preparacion/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1NjgwNzgsImV4cCI6MjE5NTE2ODA3OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjEwLCJ1c2VybmFtZSI6InNveV9zb2NpbzIiLCJwYXNzd29yZCI6IiQyeSQxMCR2eDA3dG5qUklRcE5FbjVDNW1wMkguNk9hMk9jVjh3YlB2TFAxZ3dpN3dCaTdhNUlXeUJiVyIsImlzQWRtaW4iOiJzaSIsInJvbCI6InNvY2lvIiwiZmVjaGFfaW5pY2lvIjoiMjAyMi0xMS0yNyIsImZlY2hhX2ZpbmFsIjpudWxsfSwiYXBwIjoiTGEgQ29tYW5kYSJ9.6CWtxcC43GmbEYKcOVBuF5DWV3PjiWgzU2Lx1E6zy2E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/areas/listar_en_preparacion/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"areas",
+						"listar_en_preparacion",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "areas/listar_listos/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1NjgwNzgsImV4cCI6MjE5NTE2ODA3OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjEwLCJ1c2VybmFtZSI6InNveV9zb2NpbzIiLCJwYXNzd29yZCI6IiQyeSQxMCR2eDA3dG5qUklRcE5FbjVDNW1wMkguNk9hMk9jVjh3YlB2TFAxZ3dpN3dCaTdhNUlXeUJiVyIsImlzQWRtaW4iOiJzaSIsInJvbCI6InNvY2lvIiwiZmVjaGFfaW5pY2lvIjoiMjAyMi0xMS0yNyIsImZlY2hhX2ZpbmFsIjpudWxsfSwiYXBwIjoiTGEgQ29tYW5kYSJ9.6CWtxcC43GmbEYKcOVBuF5DWV3PjiWgzU2Lx1E6zy2E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/areas/listar_listos/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"areas",
+						"listar_listos",
+						"4"
 					]
 				}
 			},
