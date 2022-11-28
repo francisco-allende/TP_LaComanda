@@ -12,7 +12,7 @@ class TrabajadorController extends Trabajador implements IApiUsable
        $params = $request->getParsedBody();
 
        $trabajador = Trabajador::instanciarTrabajador($params['username'], $params['password'], $params['isAdmin'], $params['rol'],
-       $params['fecha_inicio'], $params['fecha_fin']);
+       $params['fecha_inicio']);
 
        $trabajador->CrearTrabajador();
 

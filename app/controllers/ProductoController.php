@@ -12,12 +12,19 @@ class ProductoController extends Producto
     public function CargarUno($request, $response, $args)
     {
         $params = $request->getParsedBody();
-        $producto = Producto::instanciarProducto($params['area'], $params['id_pedido'], "pendiente", $params['descripcion'],
-        $params['precio']);
 
-        $producto->CrearProducto();
-
-        $payload = json_encode(array("mensaje" => "Producto creado con exito"));
+        //valido que el pedido exista
+        $pedido = Pedido::ObtenerPedido($params['id_pedido']);
+        if($pedido != false){
+          $producto = Producto::instanciarProducto($params['area'], $params['id_pedido'], "pendiente", $params['descripcion'],
+          $params['precio']);
+  
+          $producto->CrearProducto();
+  
+          $payload = json_encode(array("mensaje" => "Producto creado con exito"));
+        }else{
+          $payload = json_encode(array("mensaje" => "No puede crearse un producto de un pedido inexistente"));
+        }
 
         $response->getBody()->write($payload);
         return $response

@@ -13,14 +13,24 @@ class PedidoController extends Pedido
         $params = $request->getParsedBody();
         $imgPath = "Pedido_de_{$params['nombre_cliente']}_mesa_Nro_{$params['id_mesa']}.jpg";
 
-        $pedido = Pedido::instanciarPedido($params['id_mesa'], $params['status'], $params['nombre_cliente'], $imgPath);
+        //valido que exista la mesa y que este libre
+        $mesa = Mesa::ObtenerMesa($params['id_mesa']);
+        if($mesa != false){
+          if($mesa->getStatus() == "libre"){
+            $pedido = Pedido::instanciarPedido($params['id_mesa'], $params['status'], $params['nombre_cliente'], $imgPath);
 
-        $pedido->CrearPedido();
-        $retorno = ArchivoController::UploadPhoto($imgPath);
-        if($retorno == 1 || $retorno){
-          $payload = json_encode(array("mensaje" => "Pedido y foto creado con exito"));
+            $pedido->CrearPedido();
+            $retorno = ArchivoController::UploadPhoto($imgPath);
+            if($retorno == 1 || $retorno){
+              $payload = json_encode(array("mensaje" => "Pedido y foto creado con exito"));
+            }else{
+              $payload = json_encode(array("mensaje" => "Pedido creada con exito. No se pudo guardar la foto"));
+            }
+          }else{
+            $payload = json_encode(array("Error" => "La mesa se encuentra ocupada"));
+          }
         }else{
-          $payload = json_encode(array("mensaje" => "Pedido creada con exito. No se pudo guardar la foto"));
+          $payload = json_encode(array("Error" => "Mesa inexistente"));
         }
 
         $response->getBody()->write($payload);
@@ -57,7 +67,7 @@ class PedidoController extends Pedido
       $params = $request->getParsedBody();
 
       $pedido = Pedido::ObtenerPedido($params['id']);
-      if($pedido != false || $pedido != null){
+      if($pedido != false){
 
         $productos = Pedido::ObtenerProductosDelPedido($pedido->id);
         $total = 0;
