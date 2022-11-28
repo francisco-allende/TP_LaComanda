@@ -102,9 +102,14 @@ class MesaController extends Mesa
       $pedido = Pedido::ObtenerPedido($params['id_pedido']);
       if($pedido != false)
       {
-        Pedido::ModificarMesa($params['id_nueva_mesa'], $params['id_pedido']);
-        
-        $payload = json_encode("Mesa cambiada con exito");
+        $mesa = Mesa::ObtenerMesa($params['id_nueva_mesa']);
+        if($mesa != false && $mesa->getEstado() == "libre")
+        {
+          Pedido::ModificarMesa($params['id_nueva_mesa'], $params['id_pedido']);
+          $payload = json_encode("Mesa cambiada con exito");
+        }else{
+          $payload = json_encode("No puede cambiarse a una mesa ocupada o inexistente");
+        }
       }else{
         $payload = json_encode("Error: No se pudo cambiar la mesa");
       }

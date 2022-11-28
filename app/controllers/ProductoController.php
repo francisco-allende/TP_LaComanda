@@ -68,6 +68,15 @@ class ProductoController extends Producto
         if(isset($params['tiempo_fin']))
         {
           $fueModificado = Producto::ModificarStatusProducto($params['status'], $params['id'], $params['tiempo_fin']);
+          if($fueModificado){
+            $producto = Producto::ObtenerProducto($params['id']);
+            if($producto != false){
+              $pedido = Pedido::ObtenerPedido($producto->getIdPedido());
+              if($pedido != false){
+                Pedido::ModificarStatusPedido("en preparacion", $pedido->getId());
+              }
+            }
+          }
         }else{
           $fueModificado = Producto::ModificarStatusProducto($params['status'], $params['id']);
         }

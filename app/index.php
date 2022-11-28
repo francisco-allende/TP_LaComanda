@@ -59,9 +59,9 @@ $app->group('/trabajador', function (RouteCollectorProxy $group) {
     $group->get('[/]', \ProductoController::class . ':TraerTodos'); 
     $group->get('/search_by_id/{id}', \ProductoController::class . ':TraerUno'); 
     $group->post('/alta', \ProductoController::class . ':CargarUno');
-    $group->put('/servir', \ProductoController::class . ':Servir')->add(new isMozo());
     $group->put('/preparar', \ProductoController::class . ':ModificarStatus');
     $group->put('/listo', \ProductoController::class . ':ModificarStatus');
+    $group->put('/servir', \ProductoController::class . ':Servir')->add(new isMozo());
     $group->delete('/borrar', \ProductoController::class . ':BorrarUno')->add(new isAdmin());
   })->add(new EstaLogeado());
 

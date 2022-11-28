@@ -16,8 +16,8 @@ class PedidoController extends Pedido
         //valido que exista la mesa y que este libre
         $mesa = Mesa::ObtenerMesa($params['id_mesa']);
         if($mesa != false){
-          if($mesa->getStatus() == "libre"){
-            $pedido = Pedido::instanciarPedido($params['id_mesa'], $params['status'], $params['nombre_cliente'], $imgPath);
+          if($mesa->getEstado() == "libre"){
+            $pedido = Pedido::instanciarPedido($params['id_mesa'], "pendiente", $params['nombre_cliente'], $imgPath);
 
             $pedido->CrearPedido();
             $retorno = ArchivoController::UploadPhoto($imgPath);
