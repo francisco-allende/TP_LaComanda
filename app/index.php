@@ -83,6 +83,7 @@ $app->group('/trabajador', function (RouteCollectorProxy $group) {
     $group->get('/search_by_id/{id}', \MesaController::class . ':TraerUno'); 
     $group->post('/alta', \MesaController::class . ':CargarUno');
     $group->put('/modificar_status', \MesaController::class . ':ModificarStatus');
+    $group->put('/levantar', \MesaController::class . ':LevantarMesa');
     $group->delete('/borrar', \MesaController::class . ':BorrarUno')->add(new isAdmin());
   })->add(new EstaLogeado());
 

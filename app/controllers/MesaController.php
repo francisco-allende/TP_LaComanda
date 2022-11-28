@@ -4,6 +4,8 @@ require_once './interfaces/IApiUsable.php';
 
 class MesaController extends Mesa
 {
+    ///---    INSERT INTO    ---///
+
     public function CargarUno($request, $response, $args)
     {
         $params = $request->getParsedBody();
@@ -19,6 +21,8 @@ class MesaController extends Mesa
           ->withHeader('Content-Type', 'application/json');
     }
 
+    ///---    GETTER    ---///
+
     public function TraerTodos($request, $response, $args)
     {
         $lista = Mesa::ObtenerTodos();
@@ -28,6 +32,8 @@ class MesaController extends Mesa
         return $response
           ->withHeader('Content-Type', 'application/json');
     }
+
+    ///---    UPDATE    ---///
 
     public function ModificarStatus($request, $response, $args)
     {
@@ -44,6 +50,28 @@ class MesaController extends Mesa
         $response->getBody()->write($payload);
         return $response
           ->withHeader('Content-Type', 'application/json');
+    }
+
+    public function LevantarMesa($request, $response, $args)
+    {
+      $params = $request->getParsedBody();
+
+      $mesa = Mesa::ObtenerMesa($params['id']);
+      if($mesa != false && $mesa != null && $mesa->getEstado() == "con cliente pagando")
+      {
+        //$pedido = Pedido::ObtenerPedidoPorMesa($params['id']);
+        //Pedido::BorrarPedido($pedido->getId());
+
+
+        Mesa::ModificarStatusMesa("libre", $mesa->getId());
+        $payload = json_encode("Mesa Nro: {$params['id']} liberada");
+      }else{
+        $payload = json_encode("Error: No se pudo levantar la mesa");
+      }
+
+      $response->getBody()->write($payload);
+      return $response
+        ->withHeader('Content-Type', 'application/json');
     }
     
     
