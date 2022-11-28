@@ -22,6 +22,7 @@ require_once './controllers/MesaController.php';
 require_once './controllers/ProductoController.php';
 require_once './controllers/PedidoController.php';
 require_once './controllers/AreaController.php';
+require_once './controllers/EncuestaController.php';
 
 // Load ENV
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
@@ -98,6 +99,15 @@ $app->group('/trabajador', function (RouteCollectorProxy $group) {
     $group->get('/listar_en_preparacion/{id}', \AreaController::class . ':ListarEnPreparacion');  
     $group->get('/listar_listos/{id}', \AreaController::class . ':ListarListos');  
     $group->post('/alta', \AreaController::class . ':CargarUno')->add(new isAdmin());
+  })->add(new EstaLogeado());
+
+  //Encuestas
+  $app->group('/encuestas', function (RouteCollectorProxy $group) {
+    $group->get('[/]', \EncuestaController::class . ':TraerTodos'); 
+    $group->get('/search_by_id/{id}', \EncuestaController::class . ':TraerUno'); 
+    $group->post('/alta', \EncuestaController::class . ':CargarUno');
+    $group->put('/modificar', \EncuestaController::class . ':Modificar');
+    $group->delete('/borrar', \EncuestaController::class . ':BorrarUno')->add(new isAdmin());
   })->add(new EstaLogeado());
 
 

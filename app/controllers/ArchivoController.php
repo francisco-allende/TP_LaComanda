@@ -2,6 +2,30 @@
 
 class ArchivoController 
 {
+    public static function UploadFile($filePath, $path ="./Encuestas/")
+    {
+        if(!file_exists($path))
+        {
+            mkdir($path, 0777);
+        }
+  
+        $destino = "{$path}".$_FILES["file"]['name'];   
+        rename($destino, "{$path}{$filePath}");
+
+        $tipoArchivo = pathinfo($destino, PATHINFO_EXTENSION); 
+        $exito = false;
+  
+        if($tipoArchivo == "csv" || $tipoArchivo == "xlsx")
+        {
+            move_uploaded_file($_FILES["file"]["tmp_name"], $destino);
+            $exito = true;
+        }else{
+            echo "No es csv ni excel, el formato es incorrecto";
+        }
+  
+        return $exito;
+    }
+
     public static function UploadPhoto($imgPath, $path ="./FotosPedidos/")
     {
         if(!file_exists($path))
