@@ -27,12 +27,32 @@ class EncuestaController extends Mesa
           ->withHeader('Content-Type', 'application/json');
     }
 
-    ///---    GETTER    ---///
+    ///---    GETTER    ---/// 
 
     public function TraerTodos($request, $response, $args)
     {
         $lista = Encuesta::ObtenerTodos();
         $payload = json_encode(array("lista_encuestas" => $lista));
+
+        $response->getBody()->write($payload);
+        return $response
+          ->withHeader('Content-Type', 'application/json');
+    }
+
+    public function TraerMejoresComentarios($request, $response, $args)
+    {
+        $lista = Encuesta::ObtenerMejoresComentarios();
+        $payload = json_encode(array("lista_mejores_comentarios" => $lista));
+
+        $response->getBody()->write($payload);
+        return $response
+          ->withHeader('Content-Type', 'application/json');
+    }
+
+    public function TraerPeoresComentarios($request, $response, $args)
+    {
+        $lista = Encuesta::ObtenerPeoresComentarios();
+        $payload = json_encode(array("lista_peores_comentarios" => $lista));
 
         $response->getBody()->write($payload);
         return $response

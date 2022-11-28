@@ -145,6 +145,24 @@ class Encuesta {
         return $consulta->fetchAll(PDO::FETCH_CLASS, 'Encuesta');
     }
 
+    public static function ObtenerMejoresComentarios()
+    {
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM encuestas WHERE promedio > 7");
+        $consulta->execute();
+
+        return $consulta->fetchAll(PDO::FETCH_CLASS, 'Encuesta');
+    }
+
+    public static function ObtenerPeoresComentarios()
+    {
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM encuestas WHERE promedio < 5");
+        $consulta->execute();
+
+        return $consulta->fetchAll(PDO::FETCH_CLASS, 'Encuesta');
+    }
+
     public static function ObtenerEncuesta($id)
     {
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
