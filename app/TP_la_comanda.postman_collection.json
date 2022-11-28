@@ -1323,6 +1323,397 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "encuestas/alta",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk2MTI3NzgsImV4cCI6MjE5NTIxMjc3OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjEyLCJ1c2VybmFtZSI6InNveV9tb3pvMiIsInBhc3N3b3JkIjoiJDJ5JDEwJDJhSGF2cGdLcXc2UXRwdko0TVYwZC5PNEVcL1hjT2FsMXRcLzlcL1FxV2JQb3BvazI4S3FQTDlLIiwiaXNBZG1pbiI6Im5vIiwicm9sIjoibW96byIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjgiLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.Ghe6XHovGMZ-HjhfLmkbEcS0FoNDcRsIPvTtRKbRdTA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id_pedido",
+							"value": "8",
+							"type": "text"
+						},
+						{
+							"key": "puntos_mesa",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "puntos_restoran",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "puntos_mozo",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "puntos_cocinero",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "comentarios",
+							"value": "el mejor lugar de mi vida",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/encuestas/alta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"encuestas",
+						"alta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "trabajador/upload/csv",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk2MTI3NzgsImV4cCI6MjE5NTIxMjc3OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjEyLCJ1c2VybmFtZSI6InNveV9tb3pvMiIsInBhc3N3b3JkIjoiJDJ5JDEwJDJhSGF2cGdLcXc2UXRwdko0TVYwZC5PNEVcL1hjT2FsMXRcLzlcL1FxV2JQb3BvazI4S3FQTDlLIiwiaXNBZG1pbiI6Im5vIiwicm9sIjoibW96byIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjgiLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.Ghe6XHovGMZ-HjhfLmkbEcS0FoNDcRsIPvTtRKbRdTA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/cataa/Desktop/trabajadores.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/trabajador/upload/csv",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"trabajador",
+						"upload",
+						"csv"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "leer/csv",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk2MTI3NzgsImV4cCI6MjE5NTIxMjc3OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjEyLCJ1c2VybmFtZSI6InNveV9tb3pvMiIsInBhc3N3b3JkIjoiJDJ5JDEwJDJhSGF2cGdLcXc2UXRwdko0TVYwZC5PNEVcL1hjT2FsMXRcLzlcL1FxV2JQb3BvazI4S3FQTDlLIiwiaXNBZG1pbiI6Im5vIiwicm9sIjoibW96byIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjgiLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.Ghe6XHovGMZ-HjhfLmkbEcS0FoNDcRsIPvTtRKbRdTA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/trabajador/leer/csv",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"trabajador",
+						"leer",
+						"csv"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "download/csv",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk2MTI3NzgsImV4cCI6MjE5NTIxMjc3OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjEyLCJ1c2VybmFtZSI6InNveV9tb3pvMiIsInBhc3N3b3JkIjoiJDJ5JDEwJDJhSGF2cGdLcXc2UXRwdko0TVYwZC5PNEVcL1hjT2FsMXRcLzlcL1FxV2JQb3BvazI4S3FQTDlLIiwiaXNBZG1pbiI6Im5vIiwicm9sIjoibW96byIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjgiLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.Ghe6XHovGMZ-HjhfLmkbEcS0FoNDcRsIPvTtRKbRdTA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/trabajador/download/csv",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"trabajador",
+						"download",
+						"csv"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "encuestas/mostrar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk2MTI3NzgsImV4cCI6MjE5NTIxMjc3OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjEyLCJ1c2VybmFtZSI6InNveV9tb3pvMiIsInBhc3N3b3JkIjoiJDJ5JDEwJDJhSGF2cGdLcXc2UXRwdko0TVYwZC5PNEVcL1hjT2FsMXRcLzlcL1FxV2JQb3BvazI4S3FQTDlLIiwiaXNBZG1pbiI6Im5vIiwicm9sIjoibW96byIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjgiLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.Ghe6XHovGMZ-HjhfLmkbEcS0FoNDcRsIPvTtRKbRdTA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/encuestas/mostrar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"encuestas",
+						"mostrar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "encuestas/modificar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk2MTI3NzgsImV4cCI6MjE5NTIxMjc3OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjEyLCJ1c2VybmFtZSI6InNveV9tb3pvMiIsInBhc3N3b3JkIjoiJDJ5JDEwJDJhSGF2cGdLcXc2UXRwdko0TVYwZC5PNEVcL1hjT2FsMXRcLzlcL1FxV2JQb3BvazI4S3FQTDlLIiwiaXNBZG1pbiI6Im5vIiwicm9sIjoibW96byIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjgiLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.Ghe6XHovGMZ-HjhfLmkbEcS0FoNDcRsIPvTtRKbRdTA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "puntos_mesa",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "puntos_restoran",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "puntos_mozo",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "puntos_cocinero",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/encuestas/modificar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"encuestas",
+						"modificar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "encuestas/borrar",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk2MTI3NzgsImV4cCI6MjE5NTIxMjc3OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjEyLCJ1c2VybmFtZSI6InNveV9tb3pvMiIsInBhc3N3b3JkIjoiJDJ5JDEwJDJhSGF2cGdLcXc2UXRwdko0TVYwZC5PNEVcL1hjT2FsMXRcLzlcL1FxV2JQb3BvazI4S3FQTDlLIiwiaXNBZG1pbiI6Im5vIiwicm9sIjoibW96byIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjgiLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.Ghe6XHovGMZ-HjhfLmkbEcS0FoNDcRsIPvTtRKbRdTA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/encuestas/borrar?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"encuestas",
+						"borrar"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mostrar/mejores_comentarios",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk2MTI3NzgsImV4cCI6MjE5NTIxMjc3OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjEyLCJ1c2VybmFtZSI6InNveV9tb3pvMiIsInBhc3N3b3JkIjoiJDJ5JDEwJDJhSGF2cGdLcXc2UXRwdko0TVYwZC5PNEVcL1hjT2FsMXRcLzlcL1FxV2JQb3BvazI4S3FQTDlLIiwiaXNBZG1pbiI6Im5vIiwicm9sIjoibW96byIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjgiLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.Ghe6XHovGMZ-HjhfLmkbEcS0FoNDcRsIPvTtRKbRdTA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/encuestas/mostrar/mejores_comentarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"encuestas",
+						"mostrar",
+						"mejores_comentarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mostrar/peores_comentarios",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk2MTI3NzgsImV4cCI6MjE5NTIxMjc3OCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjEyLCJ1c2VybmFtZSI6InNveV9tb3pvMiIsInBhc3N3b3JkIjoiJDJ5JDEwJDJhSGF2cGdLcXc2UXRwdko0TVYwZC5PNEVcL1hjT2FsMXRcLzlcL1FxV2JQb3BvazI4S3FQTDlLIiwiaXNBZG1pbiI6Im5vIiwicm9sIjoibW96byIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjgiLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.Ghe6XHovGMZ-HjhfLmkbEcS0FoNDcRsIPvTtRKbRdTA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/encuestas/mostrar/peores_comentarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"tp_laComanda",
+						"la_comanda",
+						"app",
+						"encuestas",
+						"mostrar",
+						"peores_comentarios"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
