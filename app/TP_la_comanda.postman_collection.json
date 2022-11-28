@@ -163,12 +163,12 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "soy_mozo2",
+							"value": "soy_cocinero1",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "soy_mozo2",
+							"value": "soy_cocinero1",
 							"type": "text"
 						}
 					]
@@ -1369,7 +1369,7 @@
 						},
 						{
 							"key": "comentarios",
-							"value": "el mejor lugar de mi vida",
+							"value": "el mejor lugar de mi vidaaaaa",
 							"type": "text"
 						}
 					]
