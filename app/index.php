@@ -15,6 +15,7 @@ require __DIR__ . '/../vendor/autoload.php';
 require_once './db/AccesoDatos.php';
 require_once './middlewares/isAdmin.php';
 require_once './middlewares/isMozo.php';
+require_once './middlewares/isGastronomico.php';
 require_once './middlewares/EstaLogeado.php';
 
 require_once './controllers/TrabajadorController.php';
@@ -63,8 +64,8 @@ $app->group('/trabajador', function (RouteCollectorProxy $group) {
     $group->get('[/]', \ProductoController::class . ':TraerTodos'); 
     $group->get('/search_by_id/{id}', \ProductoController::class . ':TraerUno'); 
     $group->post('/alta', \ProductoController::class . ':CargarUno');
-    $group->put('/preparar', \ProductoController::class . ':ModificarStatus');
-    $group->put('/listo', \ProductoController::class . ':ModificarStatus');
+    $group->put('/preparar', \ProductoController::class . ':ModificarStatus')->add(new isGastronomico());
+    $group->put('/listo', \ProductoController::class . ':ModificarStatus')->add(new isGastronomico());
     $group->put('/servir', \ProductoController::class . ':Servir')->add(new isMozo());
     $group->delete('/borrar', \ProductoController::class . ':BorrarUno')->add(new isAdmin());
   })->add(new EstaLogeado());
@@ -98,7 +99,7 @@ $app->group('/trabajador', function (RouteCollectorProxy $group) {
   //AREAS
   $app->group('/areas', function (RouteCollectorProxy $group) {
     $group->get('[/]', \AreaController::class . ':TraerTodos'); 
-    $group->get('/listar_pendientes/{id}', \AreaController::class . ':ListarPendientes');  
+    $group->get('/listar_pendientes/{id}', \AreaController::class . ':ListarPendientes');
     $group->get('/listar_en_preparacion/{id}', \AreaController::class . ':ListarEnPreparacion');  
     $group->get('/listar_listos/{id}', \AreaController::class . ':ListarListos');  
     $group->post('/alta', \AreaController::class . ':CargarUno')->add(new isAdmin());
