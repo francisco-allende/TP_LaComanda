@@ -84,6 +84,7 @@ $app->group('/trabajador', function (RouteCollectorProxy $group) {
     $group->post('/alta', \MesaController::class . ':CargarUno');
     $group->put('/modificar_status', \MesaController::class . ':ModificarStatus');
     $group->put('/levantar', \MesaController::class . ':LevantarMesa');
+    $group->put('/cerrar', \MesaController::class . ':CerrarMesa')->add(new isAdmin());
     $group->delete('/borrar', \MesaController::class . ':BorrarUno')->add(new isAdmin());
   })->add(new EstaLogeado());
 

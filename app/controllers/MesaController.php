@@ -59,14 +59,35 @@ class MesaController extends Mesa
       $mesa = Mesa::ObtenerMesa($params['id']);
       if($mesa != false && $mesa != null && $mesa->getEstado() == "con cliente pagando")
       {
-        //$pedido = Pedido::ObtenerPedidoPorMesa($params['id']);
-        //Pedido::BorrarPedido($pedido->getId());
-
-
         Mesa::ModificarStatusMesa("libre", $mesa->getId());
+        
+        $pedido = Pedido::ObtenerPedidoPorMesa($params['id']);
+        if($pedido != false){
+          Pedido::BorrarPedido($pedido->getId());
+        }
+
         $payload = json_encode("Mesa Nro: {$params['id']} liberada");
       }else{
         $payload = json_encode("Error: No se pudo levantar la mesa");
+      }
+
+      $response->getBody()->write($payload);
+      return $response
+        ->withHeader('Content-Type', 'application/json');
+    }
+
+    public function CerrarMesa($request, $response, $args)
+    {
+      $params = $request->getParsedBody();
+
+      $mesa = Mesa::ObtenerMesa($params['id']);
+      if($mesa != false)
+      {
+        Mesa::ModificarStatusMesa("cerrada", $mesa->getId());
+        
+        $payload = json_encode("Mesa Nro: {$params['id']} cerrada");
+      }else{
+        $payload = json_encode("Error: No se pudo cerrar la mesa");
       }
 
       $response->getBody()->write($payload);
