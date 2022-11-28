@@ -74,14 +74,6 @@ class TrabajadorController extends Trabajador implements IApiUsable
    public function LeerCsv($request, $response, $args)
    {
       $str = ArchivoController::LeerCsv();
-      /*
-      //$lista = ArchivoController::CargarArrayDeDatos("./CSV/trabajadores.csv");
-      if($lista != null && count($lista) > 0){
-        
-        $payload = json_encode(array("lista_trabajadores_csv" => $lista));
-      }else{
-        $payload = json_encode(array("Error:" => "No se pudo leer el archivo csv"));
-      }*/
 
       $response->getBody()->write($str);
       return $response
@@ -91,9 +83,20 @@ class TrabajadorController extends Trabajador implements IApiUsable
    public function DescargarCsv($request, $response, $args)
    {
       $lista = Trabajador::ObtenerTodos();
-  
+      
+      header('Cache-Control: public');
+      header('Content-Description: File Transfer');
+      header('Content-Disposition: attachment; filename=trabajadores.csv');
+      header('Content-type: application/csv');
+      header("Content-Transfer-Encoding: UTF-8");
 
-      $response->getBody()->write($lista);
+      $filePath = "./CSV/trabajadores.csv";
+      readfile($filePath);
+      exit;
+      
+      
+      $response->getBody()->write("Copiar y pegar lo que retorna la app para crear el archivo");
+
       return $response
         ->withHeader('Content-Type', 'application/json');
    }
