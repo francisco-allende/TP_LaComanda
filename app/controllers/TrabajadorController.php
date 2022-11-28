@@ -1,5 +1,6 @@
 <?php
 require_once './models/Trabajador.php';
+require_once './controllers/ArchivoController.php';
 require_once './interfaces/IApiUsable.php';
 
 class TrabajadorController extends Trabajador implements IApiUsable
@@ -57,7 +58,57 @@ class TrabajadorController extends Trabajador implements IApiUsable
          ->withHeader('Content-Type', 'application/json');
    }
 
+   public function CrearCsv($request, $response, $args)
+   {
+      $lista = Trabajador::ObtenerTodos();
+      if(ArchivoController::AltaCSV($lista)){
+        $response->getBody()->write("trabajadores.csv creado con exito!");
+      }else{
+        $response->getBody()->write("Error: No se pudo guardar el archivo");
+      }
+
+      return $response
+        ->withHeader('Content-Type', 'application/json');
+   }
+
+   public function LeerCsv($request, $response, $args)
+   {
+      $str = ArchivoController::LeerCsv();
+      /*
+      //$lista = ArchivoController::CargarArrayDeDatos("./CSV/trabajadores.csv");
+      if($lista != null && count($lista) > 0){
+        
+        $payload = json_encode(array("lista_trabajadores_csv" => $lista));
+      }else{
+        $payload = json_encode(array("Error:" => "No se pudo leer el archivo csv"));
+      }*/
+
+      $response->getBody()->write($str);
+      return $response
+        ->withHeader('Content-Type', 'application/json');
+   }
+
+   public function DescargarCsv($request, $response, $args)
+   {
+      $lista = Trabajador::ObtenerTodos();
+  
+
+      $response->getBody()->write($lista);
+      return $response
+        ->withHeader('Content-Type', 'application/json');
+   }
+
    //---    GETTERS   ---//
+
+   public function TraerTodos($request, $response, $args)
+   {
+       $lista = Trabajador::ObtenerTodos();
+       $payload = json_encode(array("lista_trabajadores" => $lista));
+
+       $response->getBody()->write($payload);
+       return $response
+         ->withHeader('Content-Type', 'application/json');
+   }
 
     public function TraerUno($request, $response, $args)
     {
@@ -75,16 +126,6 @@ class TrabajadorController extends Trabajador implements IApiUsable
           ->withHeader('Content-Type', 'application/json');
     }
 
-    public function TraerTodos($request, $response, $args)
-    {
-        $lista = Trabajador::ObtenerTodos();
-        $payload = json_encode(array("lista_trabajadores" => $lista));
-
-        $response->getBody()->write($payload);
-        return $response
-          ->withHeader('Content-Type', 'application/json');
-    }
-    
   //---    UPDATE   ---//
 
     public function ModificarUno($request, $response, $args)
