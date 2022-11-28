@@ -107,10 +107,9 @@ $app->group('/trabajador', function (RouteCollectorProxy $group) {
   //Encuestas
   $app->group('/encuestas', function (RouteCollectorProxy $group) {
     $group->get('/mostrar', \EncuestaController::class . ':TraerTodos'); 
-    $group->get('/search_by_id/{id}', \EncuestaController::class . ':TraerUno'); 
     $group->post('/alta', \EncuestaController::class . ':CargarUno');
     $group->put('/modificar', \EncuestaController::class . ':Modificar');
-    $group->delete('/borrar', \EncuestaController::class . ':BorrarUno')->add(new isAdmin());
+    $group->delete('/borrar', \EncuestaController::class . ':BorrarUno');//->add(new isAdmin());
   })->add(new EstaLogeado());
 
 

@@ -157,10 +157,22 @@ class Encuesta {
 
     //---   UPDATE  ---///
 
-    public static function ModificarPromedioEncuesta($id)
+    public static function ModificarEncuesta($puntos_mesa, $puntos_restoran, $puntos_mozo, $puntos_cocinero, $id)
     {
         $objAccesoDato = AccesoDatos::obtenerInstancia();
-        $consulta = $objAccesoDato->prepararConsulta("UPDATE encuestas SET  = : WHERE id = :id");
+        $consulta = $objAccesoDato->prepararConsulta(
+            "UPDATE encuestas 
+            SET puntos_mesa = :puntos_mesa, puntos_restoran = :puntos_restoran, puntos_mozo = :puntos_mozo, puntos_cocinero = :puntos_cocinero, promedio = :promedio
+            WHERE id = :id");
+        $consulta->bindValue(':puntos_mesa', $puntos_mesa, PDO::PARAM_INT);
+        $consulta->bindValue(':puntos_restoran', $puntos_restoran, PDO::PARAM_INT);
+        $consulta->bindValue(':puntos_mozo', $puntos_mozo, PDO::PARAM_INT);
+        $consulta->bindValue(':puntos_cocinero', $puntos_cocinero, PDO::PARAM_INT);
+
+        $sumaTotal = (int)$puntos_mesa + (int) $puntos_restoran + (int) $puntos_mozo + (int) $puntos_cocinero;
+        $promedio = $sumaTotal / 4;
+
+        $consulta->bindValue(':promedio', $promedio, PDO::PARAM_INT);
         $consulta->bindValue(':id', $id, PDO::PARAM_INT);
         $consulta->execute();
 

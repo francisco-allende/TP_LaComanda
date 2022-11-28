@@ -45,12 +45,12 @@ class EncuestaController extends Mesa
     {
         $params = $request->getParsedBody();
 
-        $fueModificado = Mesa::ModificarStatusMesa($params['status'], $params['id']);
+        $fueModificado = Encuesta::ModificarEncuesta($params['puntos_mesa'], $params['puntos_restoran'], $params['puntos_mozo'], $params['puntos_cocinero'], $params['id']);
         
         if($fueModificado){
-          $payload = json_encode(array("mensaje" => "Status de la mesa modificado con exito"));
+          $payload = json_encode(array("mensaje" => "Encuesta modificado con exito"));
         }else{
-          $payload = json_encode(array("error" => "No se pudo modificar el status de la mesa o no hubo ningun tipo de cambio"));
+          $payload = json_encode(array("error" => "No se pudo modificar la encuesta o no hubo ningun tipo de cambio"));
         }
 
         $response->getBody()->write($payload);
@@ -63,11 +63,11 @@ class EncuestaController extends Mesa
     {
       $params = $request->getParsedBody();
 
-      $fueBorrado = Mesa::BorrarMesa($params['id']);
+      $fueBorrado = Encuesta::BorrarEncuesta($params['id']);
       if($fueBorrado){
-        $payload = json_encode(array("mensaje" => "Mesa borrada con exito"));
+        $payload = json_encode(array("mensaje" => "Encuesta borrada con exito"));
       }else{
-        $payload = json_encode(array("error" => "No se pudo borrar la mesa"));
+        $payload = json_encode(array("error" => "No se pudo borrar la encuesta"));
       }
 
       $response->getBody()->write($payload);
