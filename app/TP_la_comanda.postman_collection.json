@@ -414,7 +414,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk1MDk4MjcsImV4cCI6MjE5NTEwOTgyNywiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjYsInVzZXJuYW1lIjoianVhbmNpdG8zIiwicGFzc3dvcmQiOiIkMnkkMTAkaFlhNTV4TGY2d1ZQUmhWR2xoZTJGT1JxZXIyaVIxRFdQd2dscjVFVjJlaVp1eE9nVE5zamUiLCJpc0FkbWluIjoic2kiLCJyb2wiOiJzb2NpbyIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjciLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.IQxNyx1fSVbLa1rFE-IcAicN05gGNQtswi-Bw2aNy-0",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Njk2NjY1OTQsImV4cCI6MjE5NTI2NjU5NCwiYXVkIjoiNTRlNDEzMTFkYjM5MzE3Y2M1NTE0YzE0MWM5ZmMyNWIzODI1NTg4NCIsImRhdGEiOnsiaWQiOjExLCJ1c2VybmFtZSI6InNveV9jb2NpbmVybzEiLCJwYXNzd29yZCI6IiQyeSQxMCRmYkNTRktwRVwvWFg4YnBneEE5REhGLkxiNzIuaWhPR0JqUmdKQjZRZktqTE1sUHpFRXNyVHEiLCJpc0FkbWluIjoibm8iLCJyb2wiOiJjb2NpbmVybyIsImZlY2hhX2luaWNpbyI6IjIwMjItMTEtMjgiLCJmZWNoYV9maW5hbCI6bnVsbH0sImFwcCI6IkxhIENvbWFuZGEifQ.thQZImXXmir9hKXlx3j7C-QvVdng22PUJFH8YRJWwkU",
 							"type": "string"
 						}
 					]
@@ -426,7 +426,7 @@
 					"urlencoded": [
 						{
 							"key": "id",
-							"value": "21",
+							"value": "13",
 							"type": "text"
 						},
 						{
@@ -1487,10 +1487,10 @@
 						}
 					]
 				},
-				"method": "POST",
+				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost/tp_laComanda/la_comanda/app/trabajador/download/csv",
+					"raw": "http://localhost/tp_laComanda/la_comanda/app/descargas/csv",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1499,8 +1499,7 @@
 						"tp_laComanda",
 						"la_comanda",
 						"app",
-						"trabajador",
-						"download",
+						"descargas",
 						"csv"
 					]
 				}

@@ -50,14 +50,18 @@ $app->group('/trabajador', function (RouteCollectorProxy $group) {
 
 //TRABAJADORES
 $app->group('/trabajador', function (RouteCollectorProxy $group) {
-    $group->get('[/]', \TrabajadorController::class . ':TraerTodos'); 
-    $group->get('/search_by_id/{id}', \TrabajadorController::class . ':TraerUno');
-    $group->get('/leer/csv', \TrabajadorController::class . ':LeerCsv');
-    $group->put('/modificar', \TrabajadorController::class . ':ModificarUno');
-    $group->post('/upload/csv', \TrabajadorController::class . ':CrearCsv');
-    $group->post('/download/csv', \TrabajadorController::class . ':DescargarCsv');
-    $group->delete('/borrar', \TrabajadorController::class . ':BorrarUno')->add(new isAdmin());
-  })->add(new EstaLogeado());
+  $group->get('[/]', \TrabajadorController::class . ':TraerTodos'); 
+  $group->get('/search_by_id/{id}', \TrabajadorController::class . ':TraerUno');
+  $group->get('/leer/csv', \TrabajadorController::class . ':LeerCsv');
+  $group->get('/download/csv', \TrabajadorController::class . ':DescargarCsv');
+  $group->put('/modificar', \TrabajadorController::class . ':ModificarUno');
+  $group->post('/upload/csv', \TrabajadorController::class . ':CrearCsv');
+  $group->delete('/borrar', \TrabajadorController::class . ':BorrarUno')->add(new isAdmin());
+})->add(new EstaLogeado());
+
+$app->group('/descargas', function (RouteCollectorProxy $group) {
+  $group->get('/csv', \TrabajadorController::class . ':DescargarCsv');
+});
 
   //PRODUCTOS
   $app->group('/productos', function (RouteCollectorProxy $group) {

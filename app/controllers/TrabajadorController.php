@@ -97,8 +97,7 @@ class TrabajadorController extends Trabajador implements IApiUsable
       
       $response->getBody()->write("Copiar y pegar lo que retorna la app para crear el archivo");
 
-      return $response
-        ->withHeader('Content-Type', 'application/json');
+      return $response;
    }
 
    //---    GETTERS   ---//
