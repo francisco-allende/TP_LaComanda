@@ -79,6 +79,7 @@ class Pedido{
 
     //--- Database Methods ---///
 
+    //---       Insert into      ---///
     public function CrearPedido()
     {
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
@@ -96,6 +97,9 @@ class Pedido{
 
         return $objAccesoDatos->obtenerUltimoId();
     }
+
+    
+    //---       Getters      ---///
 
     public static function ObtenerTodos()
     {
@@ -141,6 +145,19 @@ class Pedido{
 
         return $consulta->fetchAll(PDO::FETCH_CLASS, 'Producto');
     }
+
+      //---    UPDATE   ---///
+
+      public static function ModificarStatusPedido($status, $id)
+      {
+          $objAccesoDato = AccesoDatos::obtenerInstancia();
+          $consulta = $objAccesoDato->prepararConsulta("UPDATE pedidos SET status = :status WHERE id = :id");
+          $consulta->bindValue(':status', $status, PDO::PARAM_STR);
+          $consulta->bindValue(':id', $id, PDO::PARAM_INT);
+          $consulta->execute();
+      }
+
+    //---       Delete      ---///
 
     public static function BorrarPedido($id)
     {

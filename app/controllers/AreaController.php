@@ -32,7 +32,33 @@ class AreaController extends Area
         $area = Area::getAreaById($args['id']);
         $desc = $area->descripcion;
 
-        $lista = Area::ObtenerPendientesPorArea( $desc);
+        $lista = Area::ObtenerStatusPorArea($desc, "pendiente");
+        $payload = json_encode(array("lista_pendientes_area_{$desc}" => $lista));
+
+        $response->getBody()->write($payload);
+        return $response
+          ->withHeader('Content-Type', 'application/json');
+    }
+    
+    public function ListarEnPreparacion($request, $response, $args)
+    {
+        $area = Area::getAreaById($args['id']);
+        $desc = $area->descripcion;
+
+        $lista = Area::ObtenerStatusPorArea($desc, "en preparacion");
+        $payload = json_encode(array("lista_en_preparacion_area_{$desc}" => $lista));
+
+        $response->getBody()->write($payload);
+        return $response
+          ->withHeader('Content-Type', 'application/json');
+    }
+
+    public function ListarListos($request, $response, $args)
+    {
+        $area = Area::getAreaById($args['id']);
+        $desc = $area->descripcion;
+
+        $lista = Area::ObtenerStatusPorArea($desc, "listo");
         $payload = json_encode(array("lista_pendientes_area_{$desc}" => $lista));
 
         $response->getBody()->write($payload);

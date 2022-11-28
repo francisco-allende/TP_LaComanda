@@ -19,7 +19,7 @@ require_once './db/AccesoDatos.php';
     public static function instanciarProducto($area, $id_pedido, $status, $descripcion, $precio, $tiempo_inicio = null, $tiempo_fin = null, $tiempo_para_finalizar = null){
         $producto = new Producto();
         $producto->setArea($area);
-        $producto->setIdPedidoSegunProducto($id_pedido);
+        $producto->setIdPedido($id_pedido);
         $producto->setStatus($status);
         $producto->setDescripcion($descripcion);
         $producto->setPrecio($precio);
@@ -44,7 +44,7 @@ require_once './db/AccesoDatos.php';
         return $this->status;
     }
 
-    public function getIdPedidoSegunProducto(){
+    public function getIdPedido(){
         return $this->id_pedido;
     }
 
@@ -78,7 +78,7 @@ require_once './db/AccesoDatos.php';
         $this->area = $area;
     }
 
-    public function setIdPedidoSegunProducto($id_pedido){
+    public function setIdPedido($id_pedido){
         $this->id_pedido = $id_pedido;
     }
 
@@ -135,6 +135,8 @@ require_once './db/AccesoDatos.php';
 
     //--- Database Methods ---///
 
+    //--- INSERT INTO ---///
+
     public function CrearProducto()
     {
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
@@ -160,6 +162,8 @@ require_once './db/AccesoDatos.php';
 
         return $objAccesoDatos->obtenerUltimoId();
     }
+
+     //---      GETTERS      ---///
 
     public static function ObtenerTodos()
     {
@@ -188,6 +192,8 @@ require_once './db/AccesoDatos.php';
 
         return $consulta->fetchObject('Producto');
     }
+
+     //---    UPDATE   ---///
 
     public static function ModificarStatusProducto($status, $id, $tiempo_fin = "")
     {
@@ -224,6 +230,8 @@ require_once './db/AccesoDatos.php';
         }
     }
     
+    //---      DELETE   ---///
+
     public static function BorrarProducto($id)
     {
         $objAccesoDato = AccesoDatos::obtenerInstancia();

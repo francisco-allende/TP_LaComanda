@@ -4,6 +4,9 @@ require_once './controllers/ArchivoController.php';
 
 class PedidoController extends Pedido 
 {
+
+    //---   Insert Into   ---///
+
     public function CargarUno($request, $response, $args)
     {
         $params = $request->getParsedBody();
@@ -24,6 +27,8 @@ class PedidoController extends Pedido
           ->withHeader('Content-Type', 'application/json');
     }
 
+      //---   Get  ---///
+
     public function TraerTodos($request, $response, $args)
     {
         $lista = Pedido::ObtenerTodos();
@@ -33,6 +38,10 @@ class PedidoController extends Pedido
         return $response
           ->withHeader('Content-Type', 'application/json');
     }
+
+    
+
+    //---   Delete  ---///
 
     public function BorrarUno($request, $response, $args)
     {
@@ -49,6 +58,8 @@ class PedidoController extends Pedido
       return $response
         ->withHeader('Content-Type', 'application/json');
     }
+
+    //--- Cuanto Falta, Calcular tiempos  ---///
 
     public function CuantoFalta($request, $response, $args)
     {

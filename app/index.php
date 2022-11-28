@@ -58,7 +58,9 @@ $app->group('/trabajador', function (RouteCollectorProxy $group) {
     $group->get('[/]', \ProductoController::class . ':TraerTodos'); 
     $group->get('/search_by_id/{id}', \ProductoController::class . ':TraerUno'); 
     $group->post('/alta', \ProductoController::class . ':CargarUno');
-    $group->put('/modificar_status', \ProductoController::class . ':ModificarStatus');
+    $group->put('/servir', \ProductoController::class . ':Servir');
+    $group->put('/preparar', \ProductoController::class . ':ModificarStatus');
+    $group->put('/listo', \ProductoController::class . ':ModificarStatus');
     $group->delete('/borrar', \ProductoController::class . ':BorrarUno')->add(new isAdmin());
   })->add(new EstaLogeado());
 
@@ -87,6 +89,8 @@ $app->group('/trabajador', function (RouteCollectorProxy $group) {
   $app->group('/areas', function (RouteCollectorProxy $group) {
     $group->get('[/]', \AreaController::class . ':TraerTodos'); 
     $group->get('/listar_pendientes/{id}', \AreaController::class . ':ListarPendientes');  
+    $group->get('/listar_en_preparacion/{id}', \AreaController::class . ':ListarEnPreparacion');  
+    $group->get('/listar_listos/{id}', \AreaController::class . ':ListarListos');  
     $group->post('/alta', \AreaController::class . ':CargarUno')->add(new isAdmin());
   })->add(new EstaLogeado());
 

@@ -1,13 +1,18 @@
 <?php
 require_once './models/Producto.php';
+require_once './models/Pedido.php';
+require_once './models/Mesa.php';
 require_once './interfaces/IApiUsable.php';
 
 class ProductoController extends Producto 
 {
+
+    ///---    INSERT INTO    ---///
+
     public function CargarUno($request, $response, $args)
     {
         $params = $request->getParsedBody();
-        $producto = Producto::instanciarProducto($params['area'], $params['id_pedido'], $params['status'], $params['descripcion'],
+        $producto = Producto::instanciarProducto($params['area'], $params['id_pedido'], "pendiente", $params['descripcion'],
         $params['precio']);
 
         $producto->CrearProducto();
@@ -18,6 +23,8 @@ class ProductoController extends Producto
         return $response
           ->withHeader('Content-Type', 'application/json');
     }
+
+    ///---    GETTERS    ---///
 
     public function TraerTodos($request, $response, $args)
     {
@@ -33,9 +40,9 @@ class ProductoController extends Producto
     {
         $params = $request->getParsedBody();
 
-        $trabajador = Producto::ObtenerProducto($args['id']);
-        if($trabajador != false){
-          $payload = json_encode($trabajador);
+        $producto = Producto::ObtenerProducto($args['id']);
+        if($producto != false){
+          $payload = json_encode($producto);
         }else{
           $payload = json_encode(array("Error" => "No existe producto con ese id"));
         }
@@ -44,6 +51,8 @@ class ProductoController extends Producto
         return $response
           ->withHeader('Content-Type', 'application/json');
     }
+
+    ///---    UPDATE    ---///
 
     public function ModificarStatus($request, $response, $args)
     {
@@ -67,6 +76,63 @@ class ProductoController extends Producto
           ->withHeader('Content-Type', 'application/json');
     }
 
+    public function Servir($request, $response, $args)
+    {
+        $params = $request->getParsedBody();
+
+        $producto = Producto::ObtenerProducto($params['id']);
+        if($producto != false)
+        {
+          if($producto->getStatus() == "listo")
+          {
+            $id_pedido = $producto->getIdPedido();
+            $pedido = Pedido::ObtenerPedido($id_pedido);
+
+            //cambio el estado de la mesa
+            Mesa::ModificarStatusMesa("con cliente comiendo", $pedido->getIdMesa());
+
+            //chequeo si hay otro producto para el pedido. Sino, lo cambio a servido
+            $productos = Pedido::ObtenerProductosDelPedido($id_pedido);
+
+            $statusProductos = "";
+            $todoListo = true; 
+         
+            for($i = 0; $i < count($productos); $i++)
+            {
+              $statusProductos = $productos[$i]->getStatus();
+              
+              if($statusProductos != "listo" && $statusProductos != "servido")
+              {
+                $todoListo = false;
+                break;
+              } 
+            }
+
+            //sirvo el producto
+            Producto::ModificarStatusProducto("servido", $producto->getId());
+
+            //dependiendo de si estan todos listos o no cambio el status de pedido
+            if(!$todoListo){
+              Pedido::ModificarStatusPedido("con producto servido pero no todos", $pedido->getId());
+              $payload = json_encode("servido el producto, aun el pedido no esta totalmente servido");
+            }else{
+              Pedido::ModificarStatusPedido("todo servido", $pedido->getId());
+              $payload = json_encode("todo servido para este pedido");
+            }            
+          }else{
+            $payload = json_encode(array("Error" => "El producto no se encuentra listo para servir"));
+          }
+        }else{
+          $payload = json_encode(array("Error" => "No existe producto con ese id"));
+        }
+
+        $response->getBody()->write($payload);
+        return $response
+          ->withHeader('Content-Type', 'application/json');
+    }
+
+    ///---    DELETE    ---///
+
     public function BorrarUno($request, $response, $args)
     {
       $params = $request->getParsedBody();
@@ -82,4 +148,6 @@ class ProductoController extends Producto
       return $response
         ->withHeader('Content-Type', 'application/json');
     }
+
+
 }

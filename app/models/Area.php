@@ -49,15 +49,18 @@ require_once './db/AccesoDatos.php';
             return $consulta->fetchAll(PDO::FETCH_CLASS, 'Area');
         }
 
-        public static function ObtenerPendientesPorArea($descripcion)
+        public static function ObtenerStatusPorArea($descripcion, $status)
         {
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
-            $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM productos WHERE status = 'pendiente' && area = :descripcion;");
+            $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM productos WHERE status = :status && area = :descripcion;");
+            $consulta->bindValue(':status', $status, PDO::PARAM_STR);
             $consulta->bindValue(':descripcion', $descripcion, PDO::PARAM_STR);
             $consulta->execute();
     
             return $consulta->fetchAll(PDO::FETCH_CLASS, 'Area');
         }
+
+
 
         public static function getAreaById($id)
         {
