@@ -7,7 +7,7 @@ require_once './db/AccesoDatos.php';
     public $id;
     public $area;
     public $id_pedido;
-    public $status;     //pendiente, en preparacion, terminado
+    public $status;     
     public $descripcion;
     public $precio;
     public $tiempo_inicio;
@@ -106,21 +106,16 @@ require_once './db/AccesoDatos.php';
         $this->tiempo_para_finalizar = $tiempo_para_finalizar;
     }
 
-    public static function AsignarTiempoRestante($tiempo_fin){
-        //creo una fecha actual ("") y seteo el timezone local
+    public static function AsignarTiempoRestante($tiempo_fin)
+    {
         $date = date_create("",new DateTimeZone('America/Argentina/Buenos_Aires'));
         
-        //creo un date con la date del otro y el formate de fecha + hora
         $newDate = new DateTime(date_format($date,"Y/m/d H:i:s"));
-        
-        //modify esta genial, pero solo sirve para objetos DateTime
         $newDate = $newDate->modify('+'.$tiempo_fin.'minutes');
 
-        //retorno la new date. Para acceder a su valor, uso el string que retorna format
         return $newDate;
     }
 
-    //hora de consulta cliente - tiempo fin estipulado = tiempo para finalizar
     public static function calcularTiempoRestante($tiempo_fin){
         $date_start = date_create("",new DateTimeZone('America/Argentina/Buenos_Aires'));
         $date_end = date_create($tiempo_fin,new DateTimeZone('America/Argentina/Buenos_Aires'));
@@ -133,7 +128,7 @@ require_once './db/AccesoDatos.php';
         return $newDate->format('H:i:s');
     }
 
-    //--- Database Methods ---///
+    //--- Metodos SQL  ---///
 
     //--- INSERT INTO ---///
 

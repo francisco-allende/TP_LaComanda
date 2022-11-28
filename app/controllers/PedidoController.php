@@ -6,7 +6,7 @@ require_once './controllers/ArchivoController.php';
 class PedidoController extends Pedido 
 {
 
-    //---   Insert Into   ---///
+    //---   INSERT INTO   ---///
 
     public function CargarUno($request, $response, $args)
     {
@@ -28,7 +28,7 @@ class PedidoController extends Pedido
           ->withHeader('Content-Type', 'application/json');
     }
 
-      //---   Getters  ---///
+      //---   GETTERS  ---///
 
     public function TraerTodos($request, $response, $args)
     {
@@ -49,6 +49,8 @@ class PedidoController extends Pedido
         return $response
           ->withHeader('Content-Type', 'application/json');
     }
+
+    //---   UPDATE   ---//
 
     public function Cobrar($request, $response, $args)
     {

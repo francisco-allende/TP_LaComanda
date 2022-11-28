@@ -94,6 +94,42 @@ class MesaController extends Mesa
       return $response
         ->withHeader('Content-Type', 'application/json');
     }
+
+    public function ClienteCambiaMesa($request, $response, $args)
+    {
+      $params = $request->getParsedBody();
+
+      $pedido = Pedido::ObtenerPedido($params['id_pedido']);
+      if($pedido != false)
+      {
+        Pedido::ModificarMesa($params['id_nueva_mesa'], $params['id_pedido']);
+        
+        $payload = json_encode("Mesa cambiada con exito");
+      }else{
+        $payload = json_encode("Error: No se pudo cambiar la mesa");
+      }
+
+      $response->getBody()->write($payload);
+      return $response
+        ->withHeader('Content-Type', 'application/json');
+    }
+
+    //---   DELETE    ---///
+    public function BorrarUno($request, $response, $args)
+    {
+      $params = $request->getParsedBody();
+
+      $fueBorrado = Mesa::BorrarMesa($params['id']);
+      if($fueBorrado){
+        $payload = json_encode(array("mensaje" => "Mesa borrada con exito"));
+      }else{
+        $payload = json_encode(array("error" => "No se pudo borrar la mesa"));
+      }
+
+      $response->getBody()->write($payload);
+      return $response
+        ->withHeader('Content-Type', 'application/json');
+    }
     
     
 }

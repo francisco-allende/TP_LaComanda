@@ -14,6 +14,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 require_once './db/AccesoDatos.php';
 require_once './middlewares/isAdmin.php';
+require_once './middlewares/isMozo.php';
 require_once './middlewares/EstaLogeado.php';
 
 require_once './controllers/TrabajadorController.php';
@@ -58,7 +59,7 @@ $app->group('/trabajador', function (RouteCollectorProxy $group) {
     $group->get('[/]', \ProductoController::class . ':TraerTodos'); 
     $group->get('/search_by_id/{id}', \ProductoController::class . ':TraerUno'); 
     $group->post('/alta', \ProductoController::class . ':CargarUno');
-    $group->put('/servir', \ProductoController::class . ':Servir');
+    $group->put('/servir', \ProductoController::class . ':Servir')->add(new isMozo());
     $group->put('/preparar', \ProductoController::class . ':ModificarStatus');
     $group->put('/listo', \ProductoController::class . ':ModificarStatus');
     $group->delete('/borrar', \ProductoController::class . ':BorrarUno')->add(new isAdmin());
@@ -69,22 +70,23 @@ $app->group('/trabajador', function (RouteCollectorProxy $group) {
     $group->get('[/]', \PedidoController::class . ':TraerTodos'); 
     $group->get('/search_by_id/{id}', \PedidoController::class . ':TraerUno'); 
     $group->get('/cuanto_falta/{id_mesa}/{id_pedido}', \PedidoController::class . ':CuantoFalta');
-    $group->get('/cuanto_falta_por_pedido/{id_pedido}', \PedidoController::class . ':CuantoFaltaPorPedido')->add(new isAdmin());
+    $group->get('/cuanto_falta_por_pedido/{id_pedido}', \PedidoController::class . ':CuantoFaltaPorPedido');
     $group->get('/mostrar_productos/{id}', \PedidoController::class . ':TraerProductos'); 
-    $group->post('/alta', \PedidoController::class . ':CargarUno');
-    $group->put('/modificar', \PedidoController::class . ':ModificarUno');
-    $group->put('/cobrar', \PedidoController::class . ':Cobrar');
-    $group->delete('/borrar', \PedidoController::class . ':BorrarUno');
+    $group->post('/alta', \PedidoController::class . ':CargarUno')->add(new isMozo());
+    $group->put('/modificar', \PedidoController::class . ':ModificarUno')->add(new isMozo());
+    $group->put('/cobrar', \PedidoController::class . ':Cobrar')->add(new isMozo());
+    $group->delete('/borrar', \PedidoController::class . ':BorrarUno')->add(new isMozo());
   })->add(new EstaLogeado());
 
   //MESAS
   $app->group('/mesas', function (RouteCollectorProxy $group) {
     $group->get('[/]', \MesaController::class . ':TraerTodos'); 
     $group->get('/search_by_id/{id}', \MesaController::class . ':TraerUno'); 
-    $group->post('/alta', \MesaController::class . ':CargarUno');
-    $group->put('/modificar_status', \MesaController::class . ':ModificarStatus');
-    $group->put('/levantar', \MesaController::class . ':LevantarMesa');
+    $group->post('/alta', \MesaController::class . ':CargarUno')->add(new isAdmin());
+    $group->put('/modificar_status', \MesaController::class . ':ModificarStatus')->add(new isMozo());
+    $group->put('/levantar', \MesaController::class . ':LevantarMesa')->add(new isMozo());
     $group->put('/cerrar', \MesaController::class . ':CerrarMesa')->add(new isAdmin());
+    $group->put('/cliente_cambia_mesa', \MesaController::class . ':ClienteCambiaMesa')->add(new isMozo());
     $group->delete('/borrar', \MesaController::class . ':BorrarUno')->add(new isAdmin());
   })->add(new EstaLogeado());
 

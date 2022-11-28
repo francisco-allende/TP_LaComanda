@@ -87,7 +87,9 @@ class Trabajador{
         $this->fecha_fin = $fecha_fin;
     }
 
-    //--- Database Methods ---///
+    //---  Metodos SQL  ---///
+    
+    //--- INSERT INTO ---///
 
     public function CrearTrabajador()
     {
@@ -110,6 +112,8 @@ class Trabajador{
         return $objAccesoDatos->obtenerUltimoId();
     }
 
+    //---   GETTERS   ---//
+
     public static function ObtenerTodos()
     {
         $objAccesoDatos = AccesoDatos::obtenerInstancia();
@@ -129,6 +133,23 @@ class Trabajador{
         return $consulta->fetchObject('Trabajador');
     }
 
+    public static function ObtenerTrabajadorPorMail($username)
+    {
+        $objAccesoDatos = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM trabajadores WHERE username = :username");
+        $consulta->bindValue(':username', $username);
+        $consulta->execute();
+ 
+        $myObj = $consulta->fetchObject('Trabajador');
+        if (is_null($myObj)) {
+            return null;
+        }
+ 
+        return $myObj;
+    }
+
+    //---   UPDATE   ---//
+
     public static function ModificarTrabajador($username, $password, $id)
     {
         $objAccesoDato = AccesoDatos::obtenerInstancia();
@@ -144,6 +165,8 @@ class Trabajador{
             return false;
         }
     }
+
+    //---    DELETE   ---//
 
     public static function BorrarTrabajador($id)
     {
@@ -162,19 +185,6 @@ class Trabajador{
         }
     }
 
-    public static function ObtenerTrabajadorPorMail($username)
-    {
-        $objAccesoDatos = AccesoDatos::obtenerInstancia();
-        $consulta = $objAccesoDatos->prepararConsulta("SELECT * FROM trabajadores WHERE username = :username");
-        $consulta->bindValue(':username', $username);
-        $consulta->execute();
-
-        $myObj = $consulta->fetchObject('Trabajador');
-        if (is_null($myObj)) {
-            return null;
-        }
-
-        return $myObj;
-    }
+   
 }
 ?>

@@ -4,6 +4,61 @@ require_once './interfaces/IApiUsable.php';
 
 class TrabajadorController extends Trabajador implements IApiUsable
 {
+
+   //---    LOGIN   ---//
+
+   public function Registrar($request, $response, $args)
+   {
+       $params = $request->getParsedBody();
+
+       $trabajador = Trabajador::instanciarTrabajador($params['username'], $params['password'], $params['isAdmin'], $params['rol'],
+       $params['fecha_inicio'], $params['fecha_fin']);
+
+       $trabajador->CrearTrabajador();
+
+       $payload = json_encode(array("mensaje" => "Trabajador creado con exito"));
+
+       $response->getBody()->write($payload);
+       return $response
+         ->withHeader('Content-Type', 'application/json');
+   }
+
+   public function Verificar($request, $response, $args)
+   {
+       $params = $request->getParsedBody();
+       $payload = "";
+       $username = $params['username'];
+       $password = $params['password'];
+
+       $trabajador = Trabajador::ObtenerTrabajadorPorMail($username);
+
+       if(!is_null($trabajador) && $trabajador != false)
+       {
+         if(password_verify(trim($password), $trabajador->getPassword()))
+         {
+             $userData = array(
+                 'id' => $trabajador->getId(),
+                 'username' => $trabajador->getUsername(),
+                 'password' => $trabajador->getPassword(),
+                 'isAdmin' => $trabajador->getIsAdmin(),
+                 'rol' => $trabajador->getRol(),
+                 'fecha_inicio' => $trabajador->getFechaInicio(), 
+                 'fecha_final' => $trabajador->getFechaFin());
+             $payload = json_encode(array('Token' => AutentificadorJWT::CrearToken($userData), 'response' => 'OK', 'Tipo_Usuario' => $trabajador->getRol()));
+         }else{
+           $payload = json_encode(array('Login' => "Clave incorrecta"));
+         }
+       }else{
+         $payload = json_encode(array('Login' => "No existe usuario $username"));
+       }
+
+       $response->getBody()->write($payload);
+       return $response
+         ->withHeader('Content-Type', 'application/json');
+   }
+
+   //---    GETTERS   ---//
+
     public function TraerUno($request, $response, $args)
     {
         $params = $request->getParsedBody();
@@ -30,6 +85,8 @@ class TrabajadorController extends Trabajador implements IApiUsable
           ->withHeader('Content-Type', 'application/json');
     }
     
+  //---    UPDATE   ---//
+
     public function ModificarUno($request, $response, $args)
     {
         $params = $request->getParsedBody();
@@ -46,6 +103,7 @@ class TrabajadorController extends Trabajador implements IApiUsable
           ->withHeader('Content-Type', 'application/json');
     }
 
+    //---    DELETE   ---//
 
     public function BorrarUno($request, $response, $args)
     {
@@ -63,55 +121,5 @@ class TrabajadorController extends Trabajador implements IApiUsable
         ->withHeader('Content-Type', 'application/json');
     }
 
-    //---    Login   ---//
-
-    public function Registrar($request, $response, $args)
-    {
-        $params = $request->getParsedBody();
-
-        $trabajador = Trabajador::instanciarTrabajador($params['username'], $params['password'], $params['isAdmin'], $params['rol'],
-        $params['fecha_inicio'], $params['fecha_fin']);
-
-        $trabajador->CrearTrabajador();
-
-        $payload = json_encode(array("mensaje" => "Trabajador creado con exito"));
-
-        $response->getBody()->write($payload);
-        return $response
-          ->withHeader('Content-Type', 'application/json');
-    }
-
-    public function Verificar($request, $response, $args)
-    {
-        $params = $request->getParsedBody();
-        $payload = "";
-        $username = $params['username'];
-        $password = $params['password'];
-
-        $trabajador = Trabajador::ObtenerTrabajadorPorMail($username);
-
-        if(!is_null($trabajador) && $trabajador != false)
-        {
-          if(password_verify(trim($password), $trabajador->getPassword()))
-          {
-              $userData = array(
-                  'id' => $trabajador->getId(),
-                  'username' => $trabajador->getUsername(),
-                  'password' => $trabajador->getPassword(),
-                  'isAdmin' => $trabajador->getIsAdmin(),
-                  'rol' => $trabajador->getRol(),
-                  'fecha_inicio' => $trabajador->getFechaInicio(), 
-                  'fecha_final' => $trabajador->getFechaFin());
-              $payload = json_encode(array('Token' => AutentificadorJWT::CrearToken($userData), 'response' => 'OK', 'Tipo_Usuario' => $trabajador->getRol()));
-          }else{
-            $payload = json_encode(array('Login' => "Clave incorrecta"));
-          }
-        }else{
-          $payload = json_encode(array('Login' => "No existe usuario $username"));
-        }
-
-        $response->getBody()->write($payload);
-        return $response
-          ->withHeader('Content-Type', 'application/json');
-    }
+   
 }

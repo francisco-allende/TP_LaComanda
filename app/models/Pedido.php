@@ -77,7 +77,7 @@ class Pedido{
         $this->total_cuenta = $total_cuenta;
     }
 
-    //--- Database Methods ---///
+    //--- Metodos SQL ---///
 
     //---       Insert into      ---///
     public function CrearPedido()
@@ -163,6 +163,15 @@ class Pedido{
           $objAccesoDato = AccesoDatos::obtenerInstancia();
           $consulta = $objAccesoDato->prepararConsulta("UPDATE pedidos SET total_cuenta = :total_cuenta WHERE id = :id");
           $consulta->bindValue(':total_cuenta', $total_cuenta, PDO::PARAM_STR);
+          $consulta->bindValue(':id', $id, PDO::PARAM_INT);
+          $consulta->execute();
+      }
+
+      public static function ModificarMesa($id_mesa, $id)
+      {
+          $objAccesoDato = AccesoDatos::obtenerInstancia();
+          $consulta = $objAccesoDato->prepararConsulta("UPDATE pedidos SET id_mesa = :id_mesa WHERE id = :id");
+          $consulta->bindValue(':id_mesa', $id_mesa, PDO::PARAM_STR);
           $consulta->bindValue(':id', $id, PDO::PARAM_INT);
           $consulta->execute();
       }

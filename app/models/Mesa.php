@@ -35,7 +35,7 @@ class Mesa {
         $this->estado = $estado;
     }        
 
-    //--- Database Methods ---///
+    //--- Metodos SQL  ---///
 
     public function CrearMesa()
     {
@@ -74,6 +74,20 @@ class Mesa {
         $objAccesoDato = AccesoDatos::obtenerInstancia();
         $consulta = $objAccesoDato->prepararConsulta("UPDATE mesas SET estado = :estado WHERE id = :id");
         $consulta->bindValue(':estado', $estado, PDO::PARAM_STR);
+        $consulta->bindValue(':id', $id, PDO::PARAM_INT);
+        $consulta->execute();
+
+        if($consulta->rowCount() == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static function BorrarMesa($id)
+    {
+        $objAccesoDato = AccesoDatos::obtenerInstancia();
+        $consulta = $objAccesoDato->prepararConsulta("DELETE FROM mesas WHERE id = :id;"); 
         $consulta->bindValue(':id', $id, PDO::PARAM_INT);
         $consulta->execute();
 

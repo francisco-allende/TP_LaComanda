@@ -30,6 +30,10 @@ require_once './db/AccesoDatos.php';
             $this->descripcion = $descripcion;
         }
 
+        //---   Metodos SQL   ---//
+
+        //---   INSERT INTO   ---//
+
         public function CrearArea()
         {
             $objAccesoDatos = AccesoDatos::obtenerInstancia();
@@ -39,6 +43,8 @@ require_once './db/AccesoDatos.php';
     
             return $objAccesoDatos->obtenerUltimoId();
         }
+
+        //---   GETTERS   ---//
 
         public static function ObtenerTodos()
         {
@@ -59,8 +65,6 @@ require_once './db/AccesoDatos.php';
     
             return $consulta->fetchAll(PDO::FETCH_CLASS, 'Area');
         }
-
-
 
         public static function getAreaById($id)
         {
@@ -97,20 +101,5 @@ require_once './db/AccesoDatos.php';
             $query->bindValue(':area_id', $area->getAreaId());
             return $query->execute();
         }
-
-        //--- Get Area ---//
-
-   
-
-        public static function getAreaByName($area_name){
-            $objDataAccess = DataAccess::getInstance();
-            $query = $objDataAccess->prepareQuery("SELECT area_id, area_description FROM area WHERE area_description = :area_description;");
-            $query->bindParam(':area_description', $area_name);
-            $query->execute();
-            $area = $query->fetchObject('Area');
-            
-            return $area;
-        }
-
  }
 ?>
